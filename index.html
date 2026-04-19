@@ -2,7 +2,9 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Boka bastun</title>
+<title>Bastu Bokning</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
 <style>
 
@@ -46,18 +48,13 @@ background:#e3e7ec;
 font-size:16px;
 }
 
-.quick button.active{
-background:#2e7d32;
-color:white;
-}
-
 label{
 display:block;
 margin-top:10px;
 font-weight:600;
 }
 
-select,input{
+input,select{
 width:100%;
 padding:12px;
 margin-top:5px;
@@ -92,11 +89,12 @@ box-shadow:0 2px 6px rgba(0,0,0,0.08);
 
 <div class="container">
 
-<h1>🔥 Boka bastun </h1>
+<h1>🔥 Bastu Bokning</h1>
 
 <div class="card">
 
 <div class="quick">
+<button onclick="bookNow()">Boka nu</button>
 <button onclick="setToday()">Idag</button>
 <button onclick="setTomorrow()">Imorgon</button>
 </div>
@@ -105,13 +103,7 @@ box-shadow:0 2px 6px rgba(0,0,0,0.08);
 <input type="date" id="date">
 
 <label>Starttid</label>
-<select id="time">
-<option>17:00</option>
-<option>18:00</option>
-<option>19:00</option>
-<option>20:00</option>
-<option>21:00</option>
-</select>
+<input type="time" id="time">
 
 <label>Längd</label>
 <select id="hours">
@@ -132,7 +124,10 @@ box-shadow:0 2px 6px rgba(0,0,0,0.08);
 
 <script>
 
-let bookings=[]
+const SUPABASE_URL = "https://kcjiujdgeqjajvimweuj.supabase.co"
+const SUPABASE_KEY = "sb_publishable_s4CHMttu96f7d-j3KZ3vAg_PftStbk-"
+
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
 
 function setToday(){
 let d=new Date()
@@ -145,31 +140,72 @@ d.setDate(d.getDate()+1)
 document.getElementById("date").value=d.toISOString().split("T")[0]
 }
 
-function book(){
+function bookNow(){
 
-let date=document.getElementById("date").value
-let time=document.getElementById("time").value
-let hours=document.getElementById("hours").value
+let now=new Date()
 
-let booking=date+" "+time+" ("+hours+"h)"
+let date=now.toISOString().split("T")[0]
+document.getElementById("date").value=date
 
-bookings.push(booking)
+let h=now.getHours().toString().padStart(2,'0')
+let m=now.getMinutes().toString().padStart(2,'0')
 
-render()
+document.getElementById("time").value=h+":"+m
 
 }
 
-function render(){
+async function book(){
+
+let date=document.getElementById("date").value
+let time=document.getElementById("time").value
+let hours=parseInt(document.getElementById("hours").value)
+
+let parts=time.split(":")
+let start=new Date()
+start.setHours(parts[0])
+start.setMinutes(parts[1])
+
+let end=new Date(start.getTime()+hours*60*60*1000)
+let endTime=end.toTimeString().slice(0,5)
+
+await client
+.from("bookings")
+.insert([
+{
+date:date,
+start:time,
+end:endTime
+}
+])
+
+loadBookings()
+
+}
+
+async function loadBookings(){
+
+let { data } = await client
+.from("bookings")
+.select("*")
+.order("date")
 
 let html=""
 
-bookings.forEach(b=>{
-html+=`<div class="booking">${b}</div>`
+data.forEach(b=>{
+
+html+=`
+<div class="booking">
+${b.date} ${b.start} → ${b.end}
+</div>
+`
+
 })
 
 document.getElementById("bookings").innerHTML=html
 
 }
+
+loadBookings()
 
 </script>
 
