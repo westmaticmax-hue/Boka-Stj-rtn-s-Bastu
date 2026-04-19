@@ -7,10 +7,15 @@
 <style>
 
 body{
-font-family:-apple-system, BlinkMacSystemFont, sans-serif;
-background:#f5f6f8;
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+background:#f4f6f8;
 margin:0;
 padding:20px;
+}
+
+.container{
+max-width:420px;
+margin:auto;
 }
 
 h1{
@@ -18,39 +23,50 @@ text-align:center;
 margin-bottom:30px;
 }
 
-.slot{
-display:flex;
-justify-content:space-between;
-align-items:center;
+.card{
 background:white;
-padding:18px;
-margin-bottom:12px;
+padding:20px;
 border-radius:14px;
 box-shadow:0 4px 10px rgba(0,0,0,0.08);
-font-size:18px;
+margin-bottom:20px;
 }
 
-.ledig{
-color:#2e7d32;
+label{
+display:block;
+margin-top:10px;
 font-weight:600;
 }
 
-.bokad{
-color:#c62828;
-font-weight:600;
+input,select{
+width:100%;
+padding:12px;
+margin-top:5px;
+border-radius:8px;
+border:1px solid #ddd;
+font-size:16px;
 }
 
 button{
+width:100%;
+margin-top:20px;
+padding:14px;
 background:#2e7d32;
 color:white;
 border:none;
-padding:10px 16px;
-border-radius:8px;
-font-size:16px;
+border-radius:10px;
+font-size:18px;
 }
 
 button:hover{
 background:#1b5e20;
+}
+
+.booking{
+background:white;
+padding:15px;
+border-radius:10px;
+margin-bottom:10px;
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
 }
 
 </style>
@@ -58,30 +74,71 @@ background:#1b5e20;
 
 <body>
 
+<div class="container">
+
 <h1>🔥 Bastu Bokning</h1>
 
-<div class="slot">
-<span>17:00</span>
-<span class="ledig">Ledigt</span>
-<button>Boka</button>
+<div class="card">
+
+<label>Datum</label>
+<input type="date" id="date">
+
+<label>Starttid</label>
+<select id="time">
+<option>17:00</option>
+<option>18:00</option>
+<option>19:00</option>
+<option>20:00</option>
+</select>
+
+<label>Längd</label>
+<select id="hours">
+<option value="1">1 timme</option>
+<option value="2">2 timmar</option>
+<option value="3">3 timmar</option>
+</select>
+
+<button onclick="book()">Boka bastu</button>
+
 </div>
 
-<div class="slot">
-<span>18:00</span>
-<span class="bokad">Bokad</span>
+<h2>Bokningar</h2>
+
+<div id="bookings"></div>
+
 </div>
 
-<div class="slot">
-<span>19:00</span>
-<span class="ledig">Ledigt</span>
-<button>Boka</button>
-</div>
+<script>
 
-<div class="slot">
-<span>20:00</span>
-<span class="ledig">Ledigt</span>
-<button>Boka</button>
-</div>
+let bookings=[]
+
+function book(){
+
+let date=document.getElementById("date").value
+let time=document.getElementById("time").value
+let hours=document.getElementById("hours").value
+
+let booking=date+" "+time+" ("+hours+"h)"
+
+bookings.push(booking)
+
+render()
+
+}
+
+function render(){
+
+let html=""
+
+bookings.forEach(b=>{
+html+=`<div class="booking">${b}</div>`
+})
+
+document.getElementById("bookings").innerHTML=html
+
+}
+
+</script>
 
 </body>
 </html>
