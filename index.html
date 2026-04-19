@@ -20,7 +20,7 @@ margin:auto;
 
 h1{
 text-align:center;
-margin-bottom:30px;
+margin-bottom:25px;
 }
 
 .card{
@@ -31,13 +31,33 @@ box-shadow:0 4px 10px rgba(0,0,0,0.08);
 margin-bottom:20px;
 }
 
+.quick{
+display:flex;
+gap:10px;
+margin-bottom:15px;
+}
+
+.quick button{
+flex:1;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#e3e7ec;
+font-size:16px;
+}
+
+.quick button.active{
+background:#2e7d32;
+color:white;
+}
+
 label{
 display:block;
 margin-top:10px;
 font-weight:600;
 }
 
-input,select{
+select,input{
 width:100%;
 padding:12px;
 margin-top:5px;
@@ -46,7 +66,7 @@ border:1px solid #ddd;
 font-size:16px;
 }
 
-button{
+button.book{
 width:100%;
 margin-top:20px;
 padding:14px;
@@ -55,10 +75,6 @@ color:white;
 border:none;
 border-radius:10px;
 font-size:18px;
-}
-
-button:hover{
-background:#1b5e20;
 }
 
 .booking{
@@ -80,6 +96,11 @@ box-shadow:0 2px 6px rgba(0,0,0,0.08);
 
 <div class="card">
 
+<div class="quick">
+<button onclick="setToday()">Idag</button>
+<button onclick="setTomorrow()">Imorgon</button>
+</div>
+
 <label>Datum</label>
 <input type="date" id="date">
 
@@ -89,6 +110,7 @@ box-shadow:0 2px 6px rgba(0,0,0,0.08);
 <option>18:00</option>
 <option>19:00</option>
 <option>20:00</option>
+<option>21:00</option>
 </select>
 
 <label>Längd</label>
@@ -98,7 +120,7 @@ box-shadow:0 2px 6px rgba(0,0,0,0.08);
 <option value="3">3 timmar</option>
 </select>
 
-<button onclick="book()">Boka bastu</button>
+<button class="book" onclick="book()">Boka bastu</button>
 
 </div>
 
@@ -111,6 +133,17 @@ box-shadow:0 2px 6px rgba(0,0,0,0.08);
 <script>
 
 let bookings=[]
+
+function setToday(){
+let d=new Date()
+document.getElementById("date").value=d.toISOString().split("T")[0]
+}
+
+function setTomorrow(){
+let d=new Date()
+d.setDate(d.getDate()+1)
+document.getElementById("date").value=d.toISOString().split("T")[0]
+}
 
 function book(){
 
