@@ -4,13 +4,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bastu Bokning</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
 body{
 font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-background:#f4f6f8;
+background:#f2f4f7;
 margin:0;
 padding:20px;
 }
@@ -22,14 +22,13 @@ margin:auto;
 
 h1{
 text-align:center;
-margin-bottom:25px;
 }
 
 .card{
 background:white;
 padding:20px;
 border-radius:14px;
-box-shadow:0 4px 10px rgba(0,0,0,0.08);
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
 margin-bottom:20px;
 }
 
@@ -41,29 +40,28 @@ margin-bottom:15px;
 
 .quick button{
 flex:1;
-padding:12px;
+padding:10px;
 border:none;
 border-radius:8px;
-background:#e3e7ec;
+background:#e4e7ec;
 font-size:16px;
 }
 
 label{
-display:block;
-margin-top:10px;
 font-weight:600;
+margin-top:10px;
+display:block;
 }
 
 input,select{
 width:100%;
-padding:12px;
-margin-top:5px;
+padding:10px;
 border-radius:8px;
-border:1px solid #ddd;
-font-size:16px;
+border:1px solid #ccc;
+margin-top:4px;
 }
 
-button.book{
+.book{
 width:100%;
 margin-top:20px;
 padding:14px;
@@ -76,10 +74,10 @@ font-size:18px;
 
 .booking{
 background:white;
-padding:15px;
+padding:14px;
 border-radius:10px;
 margin-bottom:10px;
-box-shadow:0 2px 6px rgba(0,0,0,0.08);
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 
 </style>
@@ -124,10 +122,10 @@ box-shadow:0 2px 6px rgba(0,0,0,0.08);
 
 <script>
 
-const SUPABASE_URL = "https://kcjiujdgeqjajvimweuj.supabase.co"
-const SUPABASE_KEY = "sb_publishable_s4CHMttu96f7d-j3KZ3vAg_PftStbk-"
-
-const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+const supabase = window.supabase.createClient(
+"https://kcjiujdgeqjajvimweuj.supabase.co",
+"sb_publishable_s4CHMttu96f7d-j3KZ3vAg_PftStbk-"
+)
 
 function setToday(){
 let d=new Date()
@@ -144,39 +142,43 @@ function bookNow(){
 
 let now=new Date()
 
-let date=now.toISOString().split("T")[0]
-document.getElementById("date").value=date
-
 let h=now.getHours().toString().padStart(2,'0')
 let m=now.getMinutes().toString().padStart(2,'0')
 
 document.getElementById("time").value=h+":"+m
+setToday()
 
 }
 
 async function book(){
 
 let date=document.getElementById("date").value
-let time=document.getElementById("time").value
+let start=document.getElementById("time").value
 let hours=parseInt(document.getElementById("hours").value)
 
-let parts=time.split(":")
-let start=new Date()
-start.setHours(parts[0])
-start.setMinutes(parts[1])
+let parts=start.split(":")
+let startDate=new Date()
 
-let end=new Date(start.getTime()+hours*60*60*1000)
-let endTime=end.toTimeString().slice(0,5)
+startDate.setHours(parts[0])
+startDate.setMinutes(parts[1])
 
-await client
+let endDate=new Date(startDate.getTime()+hours*60*60*1000)
+
+let end=endDate.toTimeString().slice(0,5)
+
+const {error} = await supabase
 .from("bookings")
 .insert([
 {
 date:date,
-start:time,
-end:endTime
+start:start,
+end_time:end
 }
 ])
+
+if(error){
+alert("Fel: "+error.message)
+}
 
 loadBookings()
 
@@ -184,7 +186,7 @@ loadBookings()
 
 async function loadBookings(){
 
-let { data } = await client
+const {data,error}=await supabase
 .from("bookings")
 .select("*")
 .order("date")
@@ -195,7 +197,7 @@ data.forEach(b=>{
 
 html+=`
 <div class="booking">
-${b.date} ${b.start} → ${b.end}
+${b.date} ${b.start} → ${b.end_time}
 </div>
 `
 
