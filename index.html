@@ -92,7 +92,7 @@ font-size:18px;
 
 <div class="container">
 
-<h1>🔥 Boka bastun</h1>
+<h1>🔥 Bastu Bokning</h1>
 
 <div class="card">
 
@@ -146,6 +146,7 @@ document.getElementById("date").value=d.toISOString().split("T")[0]
 }
 
 function bookNow(){
+
 let now=new Date()
 
 let h=now.getHours().toString().padStart(2,'0')
@@ -154,6 +155,7 @@ let m=now.getMinutes().toString().padStart(2,'0')
 document.getElementById("time").value=h+":"+m
 
 setToday()
+
 }
 
 async function book(){
@@ -177,6 +179,37 @@ let endDate=new Date(startDate.getTime()+hours*3600000)
 
 let end=endDate.toTimeString().slice(0,5)
 
+
+// hämta bokningar samma dag
+const { data } = await client
+.from("bookings")
+.select("*")
+.eq("date",date)
+
+
+// kontrollera överlapp
+let conflict=false
+
+data.forEach(b=>{
+
+if(
+(start < b.end_time) &&
+(end > b.start)
+){
+conflict=true
+}
+
+})
+
+if(conflict){
+
+alert("⚠️ Den tiden är redan reserverad")
+
+return
+}
+
+
+// spara bokning
 const { error } = await client
 .from("bookings")
 .insert([
@@ -188,7 +221,9 @@ end_time:end
 ])
 
 if(error){
+
 alert("Databasfel: "+error.message)
+
 return
 }
 
