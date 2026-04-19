@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bokning av bastun</title>
+<title>Bastu Bokning</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -92,7 +92,7 @@ font-size:18px;
 
 <div class="container">
 
-<h1>Bokning av bastun</h1>
+<h1>🔥 Bastu Bokning</h1>
 
 <div class="card">
 
@@ -157,6 +157,24 @@ document.getElementById("time").value=h+":"+m
 setToday()
 
 }
+
+
+// rensa gamla bokningar
+async function cleanupOldBookings(){
+
+let now=new Date()
+
+let today=now.toISOString().split("T")[0]
+
+let time=now.toTimeString().slice(0,5)
+
+await client
+.from("bookings")
+.delete()
+.or(`date.lt.${today},and(date.eq.${today},end_time.lt.${time})`)
+
+}
+
 
 async function book(){
 
@@ -233,6 +251,7 @@ loadBookings()
 
 }
 
+
 async function loadBookings(){
 
 const { data } = await client
@@ -256,7 +275,17 @@ document.getElementById("bookings").innerHTML=html
 
 }
 
+
+// start
+async function init(){
+
+await cleanupOldBookings()
+
 loadBookings()
+
+}
+
+init()
 
 </script>
 
