@@ -5,31 +5,83 @@
 <title>Bastu Bokning</title>
 
 <style>
+
 body{
-font-family:Arial;
-background:#f2f2f2;
+font-family:-apple-system, BlinkMacSystemFont, sans-serif;
+background:#f5f6f8;
+margin:0;
 padding:20px;
 }
 
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
 .slot{
-background:white;
-padding:15px;
-margin:10px 0;
-border-radius:10px;
 display:flex;
 justify-content:space-between;
+align-items:center;
+background:white;
+padding:18px;
+margin-bottom:12px;
+border-radius:14px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+font-size:18px;
 }
-</style>
 
+.ledig{
+color:#2e7d32;
+font-weight:600;
+}
+
+.bokad{
+color:#c62828;
+font-weight:600;
+}
+
+button{
+background:#2e7d32;
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:8px;
+font-size:16px;
+}
+
+button:hover{
+background:#1b5e20;
+}
+
+</style>
 </head>
 
 <body>
 
-<h1>Bastu Bokning</h1>
+<h1>🔥 Bastu Bokning</h1>
 
-<div class="slot">17:00 Ledigt</div>
-<div class="slot">18:00 Bokad</div>
-<div class="slot">19:00 Ledigt</div>
+<div class="slot">
+<span>17:00</span>
+<span class="ledig">Ledigt</span>
+<button>Boka</button>
+</div>
+
+<div class="slot">
+<span>18:00</span>
+<span class="bokad">Bokad</span>
+</div>
+
+<div class="slot">
+<span>19:00</span>
+<span class="ledig">Ledigt</span>
+<button>Boka</button>
+</div>
+
+<div class="slot">
+<span>20:00</span>
+<span class="ledig">Ledigt</span>
+<button>Boka</button>
+</div>
 
 </body>
 </html>
