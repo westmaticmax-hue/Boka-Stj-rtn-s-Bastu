@@ -12,72 +12,77 @@ body{
 font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 background:#f2f4f7;
 margin:0;
-padding:20px;
+padding:25px;
+font-size:18px;
 }
 
 .container{
-max-width:420px;
+max-width:500px;
 margin:auto;
 }
 
 h1{
 text-align:center;
+font-size:34px;
+margin-bottom:25px;
 }
 
 .card{
 background:white;
-padding:20px;
-border-radius:14px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-margin-bottom:20px;
+padding:25px;
+border-radius:16px;
+box-shadow:0 6px 16px rgba(0,0,0,0.1);
+margin-bottom:25px;
 }
 
 .quick{
 display:flex;
 gap:10px;
-margin-bottom:15px;
+margin-bottom:20px;
 }
 
 .quick button{
 flex:1;
-padding:10px;
+padding:14px;
 border:none;
-border-radius:8px;
-background:#e4e7ec;
-font-size:16px;
+border-radius:10px;
+background:#e5e7eb;
+font-size:18px;
 }
 
 label{
-font-weight:600;
-margin-top:10px;
 display:block;
+margin-top:15px;
+font-weight:600;
 }
 
 input,select{
 width:100%;
-padding:10px;
-border-radius:8px;
+padding:14px;
+font-size:18px;
+border-radius:10px;
 border:1px solid #ccc;
-margin-top:4px;
+margin-top:5px;
 }
 
 .book{
 width:100%;
-margin-top:20px;
-padding:14px;
+margin-top:25px;
+padding:16px;
+font-size:20px;
 background:#2e7d32;
 color:white;
 border:none;
-border-radius:10px;
-font-size:18px;
+border-radius:12px;
 }
 
 .booking{
 background:white;
-padding:14px;
-border-radius:10px;
-margin-bottom:10px;
+padding:16px;
+border-radius:12px;
+margin-bottom:12px;
 box-shadow:0 2px 6px rgba(0,0,0,0.1);
+font-size:18px;
 }
 
 </style>
@@ -87,7 +92,7 @@ box-shadow:0 2px 6px rgba(0,0,0,0.1);
 
 <div class="container">
 
-<h1>🔥 Boka bastun </h1>
+<h1>🔥 Bastu Bokning</h1>
 
 <div class="card">
 
@@ -122,7 +127,9 @@ box-shadow:0 2px 6px rgba(0,0,0,0.1);
 
 <script>
 
-const supabase = window.supabase.createClient(
+const { createClient } = supabase
+
+const client = createClient(
 "https://kcjiujdgeqjajvimweuj.supabase.co",
 "sb_publishable_s4CHMttu96f7d-j3KZ3vAg_PftStbk-"
 )
@@ -139,15 +146,14 @@ document.getElementById("date").value=d.toISOString().split("T")[0]
 }
 
 function bookNow(){
-
 let now=new Date()
 
 let h=now.getHours().toString().padStart(2,'0')
 let m=now.getMinutes().toString().padStart(2,'0')
 
 document.getElementById("time").value=h+":"+m
-setToday()
 
+setToday()
 }
 
 async function book(){
@@ -156,17 +162,22 @@ let date=document.getElementById("date").value
 let start=document.getElementById("time").value
 let hours=parseInt(document.getElementById("hours").value)
 
+if(!date || !start){
+alert("Välj datum och tid")
+return
+}
+
 let parts=start.split(":")
 let startDate=new Date()
 
 startDate.setHours(parts[0])
 startDate.setMinutes(parts[1])
 
-let endDate=new Date(startDate.getTime()+hours*60*60*1000)
+let endDate=new Date(startDate.getTime()+hours*3600000)
 
 let end=endDate.toTimeString().slice(0,5)
 
-const {error} = await supabase
+const { error } = await client
 .from("bookings")
 .insert([
 {
@@ -177,8 +188,11 @@ end_time:end
 ])
 
 if(error){
-alert("Fel: "+error.message)
+alert("Databasfel: "+error.message)
+return
 }
+
+alert("Bokning sparad!")
 
 loadBookings()
 
@@ -186,10 +200,10 @@ loadBookings()
 
 async function loadBookings(){
 
-const {data,error}=await supabase
+const { data } = await client
 .from("bookings")
 .select("*")
-.order("date")
+.order("date",{ascending:true})
 
 let html=""
 
