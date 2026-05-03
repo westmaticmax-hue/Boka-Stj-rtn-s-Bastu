@@ -1,90 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Boka bastun</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+:root{
+  --bg-1:#0b1220;
+  --bg-2:#111a2e;
+  --surface:rgba(255,255,255,0.06);
+  --surface-strong:rgba(255,255,255,0.10);
+  --border:rgba(255,255,255,0.10);
+  --border-strong:rgba(255,255,255,0.18);
+  --text:#f4f6fb;
+  --muted:#9aa4bf;
+  --accent:#ff7a3d;
+  --accent-2:#ffb46b;
+  --success:#22c55e;
+  --danger:#ef4444;
+  --radius:18px;
+  --shadow:0 20px 50px -20px rgba(0,0,0,0.6);
+}
 
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
 body{
-font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-background:#f2f4f7;
-margin:0;
-padding:25px;
-font-size:18px;
+  margin:0;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(255,122,61,0.25), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgba(255,180,107,0.18), transparent 60%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  min-height:100vh;
+  padding:24px 18px calc(env(safe-area-inset-bottom) + 32px);
+  font-size:16px;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
 }
 
-.container{
-max-width:500px;
-margin:auto;
-}
+.container{max-width:520px;margin:0 auto}
 
-h1{
-text-align:center;
-font-size:34px;
-margin-bottom:25px;
+.header{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:22px;
 }
+.logo{
+  width:46px;height:46px;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  box-shadow:0 10px 25px -8px rgba(255,122,61,0.6);
+  font-size:24px;
+}
+.title{font-size:24px;font-weight:800;letter-spacing:-0.02em;margin:0}
+.subtitle{font-size:13px;color:var(--muted);margin:2px 0 0}
 
 .card{
-background:white;
-padding:25px;
-border-radius:16px;
-box-shadow:0 6px 16px rgba(0,0,0,0.1);
-margin-bottom:25px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow:var(--shadow);
+  margin-bottom:22px;
 }
 
-.quick{
-display:flex;
-gap:10px;
-margin-bottom:20px;
-}
-
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
 .quick button{
-flex:1;
-padding:14px;
-border:none;
-border-radius:10px;
-background:#e5e7eb;
-font-size:18px;
+  padding:12px 8px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--surface-strong);
+  color:var(--text);
+  font:600 14px 'Inter',sans-serif;
+  cursor:pointer;
+  transition:transform .15s ease, background .2s ease, border-color .2s ease;
 }
+.quick button:hover{background:rgba(255,255,255,0.14);border-color:var(--border-strong)}
+.quick button:active{transform:scale(0.97)}
 
 label{
-display:block;
-margin-top:15px;
-font-weight:600;
+  display:block;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:16px 0 6px;
 }
 
 input,select{
-width:100%;
-padding:14px;
-font-size:18px;
-border-radius:10px;
-border:1px solid #ccc;
-margin-top:5px;
+  width:100%;
+  padding:14px 14px;
+  font:500 16px 'Inter',sans-serif;
+  color:var(--text);
+  background:rgba(0,0,0,0.25);
+  border:1px solid var(--border);
+  border-radius:12px;
+  outline:none;
+  transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  appearance:none;-webkit-appearance:none;
+}
+input::-webkit-calendar-picker-indicator,
+input::-webkit-time-picker-indicator{filter:invert(1) opacity(.7)}
+input:focus,select:focus{
+  border-color:var(--accent);
+  background:rgba(0,0,0,0.35);
+  box-shadow:0 0 0 4px rgba(255,122,61,0.18);
+}
+select{
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239aa4bf' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 16px center;
+  padding-right:42px;
 }
 
 .book{
-width:100%;
-margin-top:25px;
-padding:16px;
-font-size:20px;
-background:#2e7d32;
-color:white;
-border:none;
-border-radius:12px;
+  width:100%;
+  margin-top:22px;
+  padding:16px;
+  font:700 17px 'Inter',sans-serif;
+  letter-spacing:-0.01em;
+  color:#1a0d05;
+  background:linear-gradient(135deg,var(--accent-2),var(--accent));
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  box-shadow:0 14px 30px -10px rgba(255,122,61,0.55);
+  transition:transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+.book:hover{filter:brightness(1.05)}
+.book:active{transform:translateY(1px) scale(0.99)}
+
+.section-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:6px 4px 12px;
+}
+.section-head h2{
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0;
+}
+.count{
+  font-size:12px;font-weight:600;
+  color:var(--muted);
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:4px 10px;border-radius:999px;
 }
 
 .booking{
-background:white;
-padding:16px;
-border-radius:12px;
-margin-bottom:12px;
-box-shadow:0 2px 6px rgba(0,0,0,0.1);
-font-size:18px;
+  display:flex;align-items:center;gap:14px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:14px 16px;
+  border-radius:14px;
+  margin-bottom:10px;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  animation:slideIn .35s ease both;
+}
+.date-chip{
+  flex:0 0 auto;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:50px;height:54px;
+  background:linear-gradient(135deg,rgba(255,122,61,0.18),rgba(255,180,107,0.10));
+  border:1px solid rgba(255,122,61,0.35);
+  border-radius:12px;
+  color:var(--accent-2);
+}
+.date-chip .d{font-size:18px;font-weight:800;line-height:1}
+.date-chip .m{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-top:3px;color:var(--accent-2);opacity:.9}
+.booking-info{display:flex;flex-direction:column;min-width:0}
+.booking-time{font-size:16px;font-weight:600;color:var(--text)}
+.booking-meta{font-size:12px;color:var(--muted);margin-top:2px}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:30px 16px;
+  border:1px dashed var(--border-strong);
+  border-radius:14px;
+  font-size:14px;
 }
 
+.toast{
+  position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 24px);
+  transform:translateX(-50%) translateY(20px);
+  background:rgba(20,26,42,0.95);
+  border:1px solid var(--border-strong);
+  color:var(--text);
+  padding:12px 18px;border-radius:12px;
+  font-size:14px;font-weight:500;
+  box-shadow:0 12px 30px -8px rgba(0,0,0,0.5);
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+  z-index:50;max-width:90%;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{border-color:rgba(34,197,94,0.5)}
+.toast.error{border-color:rgba(239,68,68,0.5)}
+
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
 </style>
 </head>
 
@@ -92,197 +223,203 @@ font-size:18px;
 
 <div class="container">
 
-<h1>Boka bastun</h1>
+  <div class="header">
+    <div class="logo">🔥</div>
+    <div>
+      <h1 class="title">Boka bastun</h1>
+      <p class="subtitle">Reservera din tid – snabbt och enkelt</p>
+    </div>
+  </div>
 
-<div class="card">
+  <div class="card">
 
-<div class="quick">
-<button onclick="bookNow()">Nu</button>
-<button onclick="setToday()">Idag</button>
-<button onclick="setTomorrow()">Imorgon</button>
+    <div class="quick">
+      <button onclick="bookNow()">Nu</button>
+      <button onclick="setToday()">Idag</button>
+      <button onclick="setTomorrow()">Imorgon</button>
+    </div>
+
+    <label for="date">Datum</label>
+    <input type="date" id="date">
+
+    <label for="time">Starttid</label>
+    <input type="time" id="time">
+
+    <label for="hours">Längd</label>
+    <select id="hours">
+      <option value="1">1 timme</option>
+      <option value="2">2 timmar</option>
+      <option value="3">3 timmar</option>
+    </select>
+
+    <button class="book" onclick="book()">Boka bastu</button>
+
+  </div>
+
+  <div class="section-head">
+    <h2>Bokningar</h2>
+    <span class="count" id="count">0</span>
+  </div>
+
+  <div id="bookings"></div>
+
 </div>
 
-<label>Datum</label>
-<input type="date" id="date">
-
-<label>Starttid</label>
-<input type="time" id="time">
-
-<label>Längd</label>
-<select id="hours">
-<option value="1">1 timme</option>
-<option value="2">2 timmar</option>
-<option value="3">3 timmar</option>
-</select>
-
-<button class="book" onclick="book()">Boka bastu</button>
-
-</div>
-
-<h2>Bokningar</h2>
-
-<div id="bookings"></div>
-
-</div>
+<div class="toast" id="toast"></div>
 
 <script>
 
 const { createClient } = supabase
 
 const client = createClient(
-"https://kcjiujdgeqjajvimweuj.supabase.co",
-"sb_publishable_s4CHMttu96f7d-j3KZ3vAg_PftStbk-"
+  "https://kcjiujdgeqjajvimweuj.supabase.co",
+  "sb_publishable_s4CHMttu96f7d-j3KZ3vAg_PftStbk-"
 )
 
+const MONTHS = ["JAN","FEB","MAR","APR","MAJ","JUN","JUL","AUG","SEP","OKT","NOV","DEC"]
+
+function showToast(msg, type){
+  const t = document.getElementById("toast")
+  t.textContent = msg
+  t.className = "toast show " + (type||"")
+  clearTimeout(window.__toastT)
+  window.__toastT = setTimeout(()=>{ t.className = "toast " + (type||"") }, 2600)
+}
+
 function setToday(){
-let d=new Date()
-document.getElementById("date").value=d.toISOString().split("T")[0]
+  let d=new Date()
+  document.getElementById("date").value=d.toISOString().split("T")[0]
 }
 
 function setTomorrow(){
-let d=new Date()
-d.setDate(d.getDate()+1)
-document.getElementById("date").value=d.toISOString().split("T")[0]
+  let d=new Date()
+  d.setDate(d.getDate()+1)
+  document.getElementById("date").value=d.toISOString().split("T")[0]
 }
 
 function bookNow(){
-
-let now=new Date()
-
-let h=now.getHours().toString().padStart(2,'0')
-let m=now.getMinutes().toString().padStart(2,'0')
-
-document.getElementById("time").value=h+":"+m
-
-setToday()
-
+  let now=new Date()
+  let h=now.getHours().toString().padStart(2,'0')
+  let m=now.getMinutes().toString().padStart(2,'0')
+  document.getElementById("time").value=h+":"+m
+  setToday()
 }
-
 
 // rensa gamla bokningar
 async function cleanupOldBookings(){
-
-let now=new Date()
-
-let today=now.toISOString().split("T")[0]
-
-let time=now.toTimeString().slice(0,5)
-
-await client
-.from("bookings")
-.delete()
-.or(`date.lt.${today},and(date.eq.${today},end_time.lt.${time})`)
-
+  let now=new Date()
+  let today=now.toISOString().split("T")[0]
+  let time=now.toTimeString().slice(0,5)
+  await client
+    .from("bookings")
+    .delete()
+    .or(`date.lt.${today},and(date.eq.${today},end_time.lt.${time})`)
 }
-
 
 async function book(){
+  let date=document.getElementById("date").value
+  let start=document.getElementById("time").value
+  let hours=parseInt(document.getElementById("hours").value)
 
-let date=document.getElementById("date").value
-let start=document.getElementById("time").value
-let hours=parseInt(document.getElementById("hours").value)
+  if(!date || !start){
+    showToast("Välj datum och tid","error")
+    return
+  }
 
-if(!date || !start){
-alert("Välj datum och tid")
-return
+  let parts=start.split(":")
+  let startDate=new Date()
+  startDate.setHours(parts[0])
+  startDate.setMinutes(parts[1])
+
+  let endDate=new Date(startDate.getTime()+hours*3600000)
+  let end=endDate.toTimeString().slice(0,5)
+
+  // hämta bokningar samma dag
+  const { data } = await client
+    .from("bookings")
+    .select("*")
+    .eq("date",date)
+
+  // kontrollera överlapp
+  let conflict=false
+  data.forEach(b=>{
+    if((start < b.end_time) && (end > b.start)){
+      conflict=true
+    }
+  })
+
+  if(conflict){
+    showToast("⚠️ Den tiden är redan reserverad","error")
+    return
+  }
+
+  // spara bokning
+  const { error } = await client
+    .from("bookings")
+    .insert([{ date:date, start:start, end_time:end }])
+
+  if(error){
+    showToast("Databasfel: "+error.message,"error")
+    return
+  }
+
+  showToast("✓ Bokning sparad","success")
+  loadBookings()
 }
-
-let parts=start.split(":")
-let startDate=new Date()
-
-startDate.setHours(parts[0])
-startDate.setMinutes(parts[1])
-
-let endDate=new Date(startDate.getTime()+hours*3600000)
-
-let end=endDate.toTimeString().slice(0,5)
-
-
-// hämta bokningar samma dag
-const { data } = await client
-.from("bookings")
-.select("*")
-.eq("date",date)
-
-
-// kontrollera överlapp
-let conflict=false
-
-data.forEach(b=>{
-
-if(
-(start < b.end_time) &&
-(end > b.start)
-){
-conflict=true
-}
-
-})
-
-if(conflict){
-
-alert("⚠️ Den tiden är redan reserverad")
-
-return
-}
-
-
-// spara bokning
-const { error } = await client
-.from("bookings")
-.insert([
-{
-date:date,
-start:start,
-end_time:end
-}
-])
-
-if(error){
-
-alert("Databasfel: "+error.message)
-
-return
-}
-
-alert("Bokning sparad!")
-
-loadBookings()
-
-}
-
 
 async function loadBookings(){
+  const { data } = await client
+    .from("bookings")
+    .select("*")
+    .order("date",{ascending:true})
+    .order("start",{ascending:true})
 
-const { data } = await client
-.from("bookings")
-.select("*")
-.order("date",{ascending:true})
+  const container = document.getElementById("bookings")
+  const count = document.getElementById("count")
+  count.textContent = (data && data.length) || 0
 
-let html=""
+  if(!data || data.length===0){
+    container.innerHTML = `<div class="empty">Inga bokningar ännu. Boka din första tid ovan.</div>`
+    return
+  }
 
-data.forEach(b=>{
+  let html=""
+  data.forEach(b=>{
+    const parts = b.date.split("-")
+    const day = parseInt(parts[2],10)
+    const mon = MONTHS[parseInt(parts[1],10)-1] || ""
+    const start = (b.start||"").slice(0,5)
+    const end = (b.end_time||"").slice(0,5)
 
-html+=`
-<div class="booking">
-${b.date} ${b.start} → ${b.end_time}
-</div>
-`
+    let durMin = 0
+    if(start && end){
+      const [sh,sm]=start.split(":").map(Number)
+      const [eh,em]=end.split(":").map(Number)
+      durMin = (eh*60+em) - (sh*60+sm)
+      if(durMin<0) durMin+=24*60
+    }
+    const durTxt = durMin>=60 ? `${Math.round(durMin/60)} h` : `${durMin} min`
 
-})
-
-document.getElementById("bookings").innerHTML=html
-
+    html+=`
+      <div class="booking">
+        <div class="date-chip">
+          <span class="d">${day}</span>
+          <span class="m">${mon}</span>
+        </div>
+        <div class="booking-info">
+          <span class="booking-time">${start} → ${end}</span>
+          <span class="booking-meta">${b.date} · ${durTxt}</span>
+        </div>
+      </div>
+    `
+  })
+  container.innerHTML = html
 }
-
 
 // start
 async function init(){
-
-await cleanupOldBookings()
-
-loadBookings()
-
+  await cleanupOldBookings()
+  loadBookings()
 }
 
 init()
