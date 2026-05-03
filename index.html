@@ -379,7 +379,7 @@ async function loadBookings(){
   count.textContent = (data && data.length) || 0
 
   if(!data || data.length===0){
-    container.innerHTML = `<div class="empty">Inga bokningar ännu. Boka din första tid ovan.</div>`
+    container.innerHTML = `<div class="empty">Inga bokningar registrerade.</div>`
     return
   }
 
