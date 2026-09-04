@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -14,6 +15,7 @@
 <title>Boka bastun</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
@@ -22,8 +24,8 @@
 :root {
     --bg: #17110d;
     --bg2: #211710;
-    --card: rgba(255,255,255,0.065);
-    --card-border: rgba(255,255,255,0.10);
+    --card: rgba(255,255,255,.065);
+    --border: rgba(255,255,255,.10);
     --text: #fff8ef;
     --muted: #b9aaa0;
     --orange: #ff9d45;
@@ -37,9 +39,19 @@ body {
     margin: 0;
     min-height: 100%;
     background:
-        radial-gradient(circle at 50% -10%, #4a2918 0%, transparent 45%),
-        linear-gradient(180deg, var(--bg2), var(--bg));
+        radial-gradient(
+            circle at 50% -10%,
+            #4a2918 0%,
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            var(--bg2),
+            var(--bg)
+        );
+
     color: var(--text);
+
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -59,7 +71,7 @@ body {
 .app {
     width: 100%;
     max-width: 520px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 /* HEADER */
@@ -88,24 +100,30 @@ body {
             rgba(255,107,53,.08)
         );
 
-    border: 1px solid rgba(255,157,69,.22);
+    border: 1px solid
+        rgba(255,157,69,.22);
 
     font-size: 27px;
 
     box-shadow:
-        0 8px 30px rgba(255,107,53,.12);
+        0 8px 30px
+        rgba(255,107,53,.12);
 }
 
 .header h1 {
     margin: 0;
+
     font-size: 25px;
     font-weight: 750;
-    letter-spacing: -0.6px;
+
+    letter-spacing: -.6px;
 }
 
 .header p {
     margin: 3px 0 0;
+
     color: var(--muted);
+
     font-size: 13px;
 }
 
@@ -113,8 +131,11 @@ body {
 
 .card {
     background: var(--card);
-    border: 1px solid var(--card-border);
+
+    border: 1px solid var(--border);
+
     border-radius: 24px;
+
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
@@ -128,12 +149,14 @@ body {
 
 .status {
     padding: 20px;
+
     position: relative;
     overflow: hidden;
 }
 
 .status::after {
     content: "";
+
     position: absolute;
 
     width: 150px;
@@ -144,18 +167,22 @@ body {
 
     border-radius: 50%;
 
-    background: rgba(255,157,69,.08);
+    background:
+        rgba(255,157,69,.08);
 }
 
 .status-label {
     color: var(--muted);
+
     font-size: 11px;
     font-weight: 700;
+
     letter-spacing: 1.3px;
 }
 
 .status-row {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -164,42 +191,59 @@ body {
 
 .status-title {
     font-size: 30px;
+
     font-weight: 780;
+
     letter-spacing: -1px;
 }
 
 .badge {
     padding: 7px 11px;
+
     border-radius: 20px;
 
     font-size: 11px;
     font-weight: 800;
+
     letter-spacing: .5px;
 }
 
 .badge.free {
-    background: rgba(114,211,154,.12);
+    background:
+        rgba(114,211,154,.12);
+
     color: var(--green);
-    border: 1px solid rgba(114,211,154,.18);
+
+    border:
+        1px solid rgba(114,211,154,.18);
 }
 
 .badge.busy {
-    background: rgba(255,117,104,.12);
+    background:
+        rgba(255,117,104,.12);
+
     color: var(--red);
-    border: 1px solid rgba(255,117,104,.18);
+
+    border:
+        1px solid rgba(255,117,104,.18);
 }
 
 .status-info {
     margin-top: 8px;
+
     color: var(--muted);
+
     font-size: 13px;
 }
 
-/* QUICK BUTTONS */
+/* QUICK */
 
 .quick {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
     gap: 8px;
 
     padding: 7px;
@@ -207,6 +251,7 @@ body {
 
 .quick button {
     appearance: none;
+
     border: 0;
 
     padding: 12px 6px;
@@ -214,6 +259,7 @@ body {
     border-radius: 16px;
 
     background: transparent;
+
     color: var(--muted);
 
     font-size: 14px;
@@ -223,11 +269,14 @@ body {
 }
 
 .quick button.active {
-    background: rgba(255,255,255,.09);
+    background:
+        rgba(255,255,255,.09);
+
     color: var(--text);
 
     box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.07);
+        inset 0 0 0 1px
+        rgba(255,255,255,.07);
 }
 
 /* FORM */
@@ -253,26 +302,32 @@ body {
 
     font-size: 11px;
     font-weight: 700;
+
     letter-spacing: 1px;
 }
 
 select,
 input[type="date"],
 input[type="time"] {
+
     width: 100%;
 
     height: 50px;
 
-    border: 1px solid rgba(255,255,255,.10);
+    border:
+        1px solid rgba(255,255,255,.10);
+
     border-radius: 15px;
 
-    background: rgba(255,255,255,.06);
+    background:
+        rgba(255,255,255,.06);
 
     color: var(--text);
 
     padding: 0 14px;
 
     font-size: 16px;
+
     font-weight: 600;
 
     outline: none;
@@ -280,7 +335,8 @@ input[type="time"] {
 
 select:focus,
 input:focus {
-    border-color: rgba(255,157,69,.5);
+    border-color:
+        rgba(255,157,69,.5);
 }
 
 select option {
@@ -290,7 +346,10 @@ select option {
 
 .time-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap: 10px;
 }
 
@@ -303,15 +362,19 @@ select option {
 
     border-radius: 17px;
 
-    background: rgba(255,157,69,.07);
+    background:
+        rgba(255,157,69,.07);
 
-    border: 1px solid rgba(255,157,69,.12);
+    border:
+        1px solid rgba(255,157,69,.12);
 }
 
 .preview-label {
     color: var(--muted);
+
     font-size: 11px;
     font-weight: 700;
+
     letter-spacing: .8px;
 }
 
@@ -326,12 +389,14 @@ select option {
     margin-top: 2px;
 
     color: var(--muted);
+
     font-size: 12px;
 }
 
 /* BOOK BUTTON */
 
 .book-button {
+
     width: 100%;
 
     margin-top: 16px;
@@ -339,6 +404,7 @@ select option {
     min-height: 55px;
 
     border: 0;
+
     border-radius: 17px;
 
     background:
@@ -351,16 +417,14 @@ select option {
     color: #211208;
 
     font-size: 16px;
+
     font-weight: 850;
 
     box-shadow:
-        0 10px 25px rgba(255,107,53,.20);
+        0 10px 25px
+        rgba(255,107,53,.20);
 
     cursor: pointer;
-
-    transition:
-        transform .12s ease,
-        opacity .12s ease;
 }
 
 .book-button:active {
@@ -369,6 +433,7 @@ select option {
 
 .book-button:disabled {
     opacity: .45;
+
     cursor: not-allowed;
 }
 
@@ -379,7 +444,9 @@ select option {
 }
 
 .section-title {
+
     display: flex;
+
     justify-content: space-between;
     align-items: center;
 
@@ -388,23 +455,30 @@ select option {
 
 .section-title strong {
     font-size: 14px;
+
     letter-spacing: .5px;
 }
 
 .section-title span {
     color: var(--muted);
+
     font-size: 11px;
 }
 
+/* BOOKING */
+
 .booking {
+
     display: flex;
+
     align-items: center;
 
     gap: 13px;
 
     padding: 14px 0;
 
-    border-top: 1px solid rgba(255,255,255,.07);
+    border-top:
+        1px solid rgba(255,255,255,.07);
 }
 
 .booking:first-child {
@@ -412,20 +486,25 @@ select option {
 }
 
 .booking-date {
+
     width: 48px;
+
     flex: 0 0 48px;
 
     text-align: center;
 }
 
 .booking-date .day {
+
     display: block;
 
     font-size: 20px;
+
     font-weight: 800;
 }
 
 .booking-date .month {
+
     display: block;
 
     margin-top: -2px;
@@ -433,7 +512,9 @@ select option {
     color: var(--orange);
 
     font-size: 10px;
+
     font-weight: 800;
+
     letter-spacing: 1px;
 }
 
@@ -442,11 +523,14 @@ select option {
 }
 
 .booking-time {
+
     font-size: 16px;
+
     font-weight: 750;
 }
 
 .booking-meta {
+
     margin-top: 3px;
 
     color: var(--muted);
@@ -455,13 +539,16 @@ select option {
 }
 
 .booking-duration {
+
     color: var(--muted);
+
     font-size: 12px;
 }
 
 /* EMPTY */
 
 .empty {
+
     padding: 20px 5px;
 
     color: var(--muted);
@@ -474,6 +561,7 @@ select option {
 /* MESSAGE */
 
 .message {
+
     display: none;
 
     margin-bottom: 15px;
@@ -483,6 +571,7 @@ select option {
     border-radius: 16px;
 
     font-size: 13px;
+
     font-weight: 650;
 }
 
@@ -491,32 +580,66 @@ select option {
 }
 
 .message.error {
-    background: rgba(255,117,104,.10);
+
+    background:
+        rgba(255,117,104,.10);
+
     color: #ff9b91;
-    border: 1px solid rgba(255,117,104,.15);
+
+    border:
+        1px solid rgba(255,117,104,.15);
 }
 
 .message.success {
-    background: rgba(114,211,154,.10);
+
+    background:
+        rgba(114,211,154,.10);
+
     color: #8ee0ac;
-    border: 1px solid rgba(114,211,154,.15);
+
+    border:
+        1px solid rgba(114,211,154,.15);
+}
+
+.message.info {
+
+    background:
+        rgba(255,157,69,.08);
+
+    color: #ffc38e;
+
+    border:
+        1px solid rgba(255,157,69,.12);
+}
+
+/* LOADING */
+
+.loading {
+
+    text-align: center;
+
+    padding: 15px;
+
+    color: var(--muted);
+
+    font-size: 13px;
 }
 
 /* FOOTER */
 
 .footer {
+
     text-align: center;
 
-    color: rgba(255,255,255,.28);
+    color:
+        rgba(255,255,255,.28);
 
     font-size: 10px;
 
     padding: 10px 0 4px;
 }
 
-/* MOBILE */
-
-@media (max-width: 380px) {
+@media (max-width:380px) {
 
     .status-title {
         font-size: 27px;
@@ -525,10 +648,11 @@ select option {
     .header h1 {
         font-size: 23px;
     }
-
 }
+
 </style>
 </head>
+
 
 <body>
 
@@ -538,11 +662,20 @@ select option {
 
     <header class="header">
 
-        <div class="fire">🔥</div>
+        <div class="fire">
+            🔥
+        </div>
 
         <div>
-            <h1>Boka bastun</h1>
-            <p>Lämna städat och fint efter Er.</p>
+
+            <h1>
+                Boka bastun
+            </h1>
+
+            <p>
+                Lugn värme. Enkelt bokat.
+            </p>
+
         </div>
 
     </header>
@@ -561,13 +694,17 @@ select option {
             <div
                 id="statusTitle"
                 class="status-title">
+
                 Ledig
+
             </div>
 
             <div
                 id="statusBadge"
                 class="badge free">
+
                 LEDIG
+
             </div>
 
         </div>
@@ -575,7 +712,9 @@ select option {
         <div
             id="statusInfo"
             class="status-info">
-            Bastun är ledig.
+
+            Hämtar bokningar...
+
         </div>
 
     </section>
@@ -596,25 +735,31 @@ select option {
         <button
             id="nowButton"
             onclick="selectQuick('now')">
+
             Nu
+
         </button>
 
         <button
             id="todayButton"
             onclick="selectQuick('today')">
+
             Idag
+
         </button>
 
         <button
             id="tomorrowButton"
             onclick="selectQuick('tomorrow')">
+
             Imorgon
+
         </button>
 
     </section>
 
 
-    <!-- BOOKING FORM -->
+    <!-- FORM -->
 
     <section class="card form">
 
@@ -669,8 +814,6 @@ select option {
         </div>
 
 
-        <!-- PREVIEW -->
-
         <div class="preview">
 
             <div class="preview-label">
@@ -680,19 +823,19 @@ select option {
             <div
                 id="previewTime"
                 class="preview-time">
+
                 18:00 → 21:00
+
             </div>
 
             <div
                 id="previewDate"
                 class="preview-date">
-                4 september 2026
+
             </div>
 
         </div>
 
-
-        <!-- BUTTON -->
 
         <button
             id="bookButton"
@@ -722,7 +865,13 @@ select option {
 
         </div>
 
-        <div id="bookingList"></div>
+        <div
+            id="bookingList"
+            class="loading">
+
+            Hämtar bokningar...
+
+        </div>
 
     </section>
 
@@ -734,67 +883,108 @@ select option {
 </div>
 
 
-<script>
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
-/*
-==========================================================
- DEMODATA
- ---------------------------------------------------------
- Detta är bara tillfälliga bokningar.
+<script type="module">
 
- När Firebase kopplas in ersätter vi detta med:
-
- Firestore → collection("bookings")
-
- Då ser alla användare samma bokningar.
-==========================================================
-*/
-
-let bookings = [
-
-    {
-        id: 1,
-        date: "2026-09-04",
-        start: "18:00",
-        duration: 3
-    },
-
-    {
-        id: 2,
-        date: "2026-09-05",
-        start: "10:00",
-        duration: 2
-    },
-
-    {
-        id: 3,
-        date: "2026-09-06",
-        start: "17:30",
-        duration: 1
-    }
-
-];
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
-/*
-==========================================================
- HJÄLPFUNKTIONER
-==========================================================
-*/
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    orderBy,
+    onSnapshot,
+    runTransaction,
+    doc
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+import {
+    getAuth,
+    signInAnonymously,
+    onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+/* =====================================================
+   DIN FIREBASE-KONFIGURATION
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDLcidVFvfuuoVNNzv9PAFQl6-qI6vHXW0",
+
+    authDomain:
+        "boka-bastu.firebaseapp.com",
+
+    projectId:
+        "boka-bastu",
+
+    storageBucket:
+        "boka-bastu.firebasestorage.app",
+
+    messagingSenderId:
+        "605683023531",
+
+    appId:
+        "1:605683023531:web:92edea0e3765726e4d41ee"
+};
+
+
+/* =====================================================
+   START FIREBASE
+===================================================== */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const db =
+    getFirestore(app);
+
+const auth =
+    getAuth(app);
+
+
+/* =====================================================
+   GLOBALA VARIABLER
+===================================================== */
+
+let bookings = [];
+
+let currentUser = null;
+
+
+/* =====================================================
+   DATUM
+===================================================== */
 
 function todayString() {
 
     const now = new Date();
 
-    const y = now.getFullYear();
+    const y =
+        now.getFullYear();
 
-    const m = String(
-        now.getMonth() + 1
-    ).padStart(2, "0");
+    const m =
+        String(
+            now.getMonth() + 1
+        ).padStart(2, "0");
 
-    const d = String(
-        now.getDate()
-    ).padStart(2, "0");
+    const d =
+        String(
+            now.getDate()
+        ).padStart(2, "0");
 
     return `${y}-${m}-${d}`;
 }
@@ -802,60 +992,72 @@ function todayString() {
 
 function datePlusDays(days) {
 
-    const date = new Date();
+    const date =
+        new Date();
 
     date.setDate(
         date.getDate() + days
     );
 
-    const y = date.getFullYear();
+    const y =
+        date.getFullYear();
 
-    const m = String(
-        date.getMonth() + 1
-    ).padStart(2, "0");
+    const m =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
 
-    const d = String(
-        date.getDate()
-    ).padStart(2, "0");
+    const d =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
 
     return `${y}-${m}-${d}`;
 }
 
 
+/* =====================================================
+   TID
+===================================================== */
+
 function timeToMinutes(time) {
 
-    const parts = time.split(":");
+    const [hours, minutes] =
+        time.split(":").map(Number);
 
     return (
-        Number(parts[0]) * 60 +
-        Number(parts[1])
+        hours * 60 +
+        minutes
     );
 }
 
 
 function minutesToTime(minutes) {
 
-    minutes = minutes % (24 * 60);
+    const hours =
+        Math.floor(minutes / 60);
 
-    const h = Math.floor(
-        minutes / 60
-    );
-
-    const m = minutes % 60;
+    const mins =
+        minutes % 60;
 
     return (
-        String(h).padStart(2, "0") +
+        String(hours).padStart(2, "0") +
         ":" +
-        String(m).padStart(2, "0")
+        String(mins).padStart(2, "0")
     );
 }
 
 
+/* =====================================================
+   DATUM VISNING
+===================================================== */
+
 function formatDate(dateString) {
 
-    const date = new Date(
-        dateString + "T12:00:00"
-    );
+    const date =
+        new Date(
+            dateString + "T12:00:00"
+        );
 
     return date.toLocaleDateString(
         "sv-SE",
@@ -870,14 +1072,17 @@ function formatDate(dateString) {
 
 function monthShort(dateString) {
 
-    const date = new Date(
-        dateString + "T12:00:00"
-    );
+    const date =
+        new Date(
+            dateString + "T12:00:00"
+        );
 
     return date
         .toLocaleDateString(
             "sv-SE",
-            { month: "short" }
+            {
+                month: "short"
+            }
         )
         .replace(".", "")
         .toUpperCase();
@@ -886,23 +1091,205 @@ function monthShort(dateString) {
 
 function dayNumber(dateString) {
 
-    const date = new Date(
-        dateString + "T12:00:00"
-    );
+    const date =
+        new Date(
+            dateString + "T12:00:00"
+        );
 
     return date.getDate();
 }
 
 
-/*
-==========================================================
- STATUS
-==========================================================
-*/
+/* =====================================================
+   MEDDELANDE
+===================================================== */
+
+function showMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message show " + type;
+
+
+    setTimeout(() => {
+
+        message.className =
+            "message";
+
+    }, 4000);
+}
+
+
+/* =====================================================
+   RENDERA BOKNINGAR
+===================================================== */
+
+function renderBookings() {
+
+    const list =
+        document.getElementById(
+            "bookingList"
+        );
+
+    const count =
+        document.getElementById(
+            "bookingCount"
+        );
+
+
+    const now =
+        Date.now();
+
+
+    const upcoming =
+        bookings
+        .filter(booking => {
+
+            const start =
+                new Date(
+                    booking.date +
+                    "T" +
+                    booking.start
+                );
+
+            return (
+                start.getTime() >=
+                now
+            );
+
+        })
+        .sort((a, b) => {
+
+            const A =
+                new Date(
+                    a.date +
+                    "T" +
+                    a.start
+                );
+
+            const B =
+                new Date(
+                    b.date +
+                    "T" +
+                    b.start
+                );
+
+            return A - B;
+
+        });
+
+
+    count.textContent =
+        `${upcoming.length} ${
+            upcoming.length === 1
+                ? "bokning"
+                : "bokningar"
+        }`;
+
+
+    if (!upcoming.length) {
+
+        list.innerHTML =
+            `<div class="empty">
+                Inga kommande bokningar.
+             </div>`;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        upcoming.map(
+            booking => {
+
+                const end =
+                    timeToMinutes(
+                        booking.start
+                    ) +
+                    Number(
+                        booking.duration
+                    ) * 60;
+
+
+                const endTime =
+                    minutesToTime(end);
+
+
+                return `
+
+                <div class="booking">
+
+                    <div class="booking-date">
+
+                        <span class="day">
+                            ${dayNumber(
+                                booking.date
+                            )}
+                        </span>
+
+                        <span class="month">
+                            ${monthShort(
+                                booking.date
+                            )}
+                        </span>
+
+                    </div>
+
+
+                    <div class="booking-main">
+
+                        <div class="booking-time">
+
+                            ${booking.start}
+                            →
+                            ${endTime}
+
+                        </div>
+
+                        <div class="booking-meta">
+
+                            ${formatDate(
+                                booking.date
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="booking-duration">
+
+                        ${booking.duration} h
+
+                    </div>
+
+                </div>
+
+                `;
+
+            }
+        ).join("");
+}
+
+
+/* =====================================================
+   STATUS JUST NU
+===================================================== */
 
 function updateStatus() {
 
-    const now = new Date();
+    const now =
+        new Date();
 
     const currentDate =
         todayString();
@@ -912,7 +1299,9 @@ function updateStatus() {
         now.getMinutes();
 
 
-    let activeBooking = null;
+    let active =
+        null;
+
 
     for (const booking of bookings) {
 
@@ -923,6 +1312,7 @@ function updateStatus() {
             continue;
         }
 
+
         const start =
             timeToMinutes(
                 booking.start
@@ -930,7 +1320,7 @@ function updateStatus() {
 
         const end =
             start +
-            booking.duration * 60;
+            Number(booking.duration) * 60;
 
 
         if (
@@ -938,7 +1328,7 @@ function updateStatus() {
             currentMinutes < end
         ) {
 
-            activeBooking =
+            active =
                 booking;
 
             break;
@@ -962,48 +1352,54 @@ function updateStatus() {
         );
 
 
-    if (activeBooking) {
+    if (active) {
 
         const end =
             timeToMinutes(
-                activeBooking.start
+                active.start
             ) +
-            activeBooking.duration * 60;
-
-        const endTime =
-            minutesToTime(end);
+            Number(active.duration) * 60;
 
 
         title.textContent =
             "Bastun är bokad";
 
+
         badge.textContent =
             "BOKAD";
+
 
         badge.className =
             "badge busy";
 
+
         info.textContent =
-            `Bokad till ${endTime}.`;
+            `Bokad till ${minutesToTime(end)}.`;
 
     } else {
 
         title.textContent =
             "Ledig";
 
+
         badge.textContent =
             "LEDIG";
+
 
         badge.className =
             "badge free";
 
+
         const next =
             findNextBooking();
+
 
         if (next) {
 
             info.textContent =
-                `Nästa bokning ${formatDate(next.date)} kl. ${next.start}.`;
+                `Nästa bokning ${formatDate(
+                    next.date
+                )} kl. ${next.start}.`;
 
         } else {
 
@@ -1011,25 +1407,23 @@ function updateStatus() {
                 "Bastun är ledig.";
 
         }
-
     }
 }
 
 
-/*
-==========================================================
- NÄSTA BOKNING
-==========================================================
-*/
+/* =====================================================
+   NÄSTA BOKNING
+===================================================== */
 
 function findNextBooking() {
 
-    const now = new Date();
+    const now =
+        Date.now();
 
-    const currentTimestamp =
-        now.getTime();
 
-    let closest = null;
+    let closest =
+        null;
+
 
     for (const booking of bookings) {
 
@@ -1040,12 +1434,13 @@ function findNextBooking() {
                 booking.start
             );
 
+
         if (
-            date.getTime() <=
-            currentTimestamp
+            date.getTime() <= now
         ) {
             continue;
         }
+
 
         if (
             !closest ||
@@ -1057,238 +1452,20 @@ function findNextBooking() {
             ).getTime()
         ) {
 
-            closest = booking;
+            closest =
+                booking;
 
         }
-
     }
+
 
     return closest;
 }
 
 
-/*
-==========================================================
- RENDERA BOKNINGAR
-==========================================================
-*/
-
-function renderBookings() {
-
-    const list =
-        document.getElementById(
-            "bookingList"
-        );
-
-    const count =
-        document.getElementById(
-            "bookingCount"
-        );
-
-
-    const sorted =
-        [...bookings].sort(
-            (a, b) => {
-
-                const A =
-                    new Date(
-                        a.date +
-                        "T" +
-                        a.start
-                    );
-
-                const B =
-                    new Date(
-                        b.date +
-                        "T" +
-                        b.start
-                    );
-
-                return A - B;
-
-            }
-        );
-
-
-    if (!sorted.length) {
-
-        list.innerHTML =
-            `<div class="empty">
-                Inga kommande bokningar.
-             </div>`;
-
-        count.textContent =
-            "0 bokningar";
-
-        return;
-    }
-
-
-    count.textContent =
-        `${sorted.length} ${
-            sorted.length === 1
-                ? "bokning"
-                : "bokningar"
-        }`;
-
-
-    list.innerHTML =
-        sorted.map(
-            booking => {
-
-                const end =
-                    timeToMinutes(
-                        booking.start
-                    ) +
-                    booking.duration * 60;
-
-                const endTime =
-                    minutesToTime(end);
-
-
-                return `
-
-                <div class="booking">
-
-                    <div class="booking-date">
-
-                        <span class="day">
-                            ${dayNumber(booking.date)}
-                        </span>
-
-                        <span class="month">
-                            ${monthShort(booking.date)}
-                        </span>
-
-                    </div>
-
-
-                    <div class="booking-main">
-
-                        <div class="booking-time">
-                            ${booking.start}
-                            →
-                            ${endTime}
-                        </div>
-
-                        <div class="booking-meta">
-                            ${formatDate(booking.date)}
-                        </div>
-
-                    </div>
-
-
-                    <div class="booking-duration">
-                        ${booking.duration}
-                        ${booking.duration === 1
-                            ? "h"
-                            : "h"}
-                    </div>
-
-                </div>
-
-                `;
-
-            }
-        ).join("");
-}
-
-
-/*
-==========================================================
- QUICK BUTTONS
-==========================================================
-*/
-
-function selectQuick(type) {
-
-    const today =
-        todayString();
-
-    if (type === "now") {
-
-        document.getElementById(
-            "date"
-        ).value = today;
-
-
-        const now =
-            new Date();
-
-        /*
-        Avrunda aktuell tid till
-        närmaste 30 minuter.
-        */
-
-        let minutes =
-            now.getHours() * 60 +
-            now.getMinutes();
-
-        minutes =
-            Math.ceil(minutes / 30) * 30;
-
-        if (minutes >= 1440) {
-            minutes = 0;
-        }
-
-        document.getElementById(
-            "startTime"
-        ).value =
-            minutesToTime(minutes);
-
-    }
-
-
-    if (type === "today") {
-
-        document.getElementById(
-            "date"
-        ).value =
-            today;
-
-    }
-
-
-    if (type === "tomorrow") {
-
-        document.getElementById(
-            "date"
-        ).value =
-            datePlusDays(1);
-
-    }
-
-
-    document
-        .querySelectorAll(".quick button")
-        .forEach(button => {
-            button.classList.remove(
-                "active"
-            );
-        });
-
-
-    const button =
-        document.getElementById(
-            type + "Button"
-        );
-
-    if (button) {
-        button.classList.add(
-            "active"
-        );
-    }
-
-
-    updatePreview();
-}
-
-
-/*
-==========================================================
- FÖRHANDSVISNING
-==========================================================
-*/
+/* =====================================================
+   FÖRHANDSVISNING
+===================================================== */
 
 function updatePreview() {
 
@@ -1297,10 +1474,12 @@ function updatePreview() {
             "date"
         ).value;
 
+
     const start =
         document.getElementById(
             "startTime"
         ).value;
+
 
     const duration =
         Number(
@@ -1333,119 +1512,130 @@ function updatePreview() {
 }
 
 
-/*
-==========================================================
- KOLLISION
-==========================================================
-*/
+/* =====================================================
+   QUICKVAL
+===================================================== */
 
-function hasConflict(
-    date,
-    start,
-    duration
-) {
+window.selectQuick =
+function(type) {
 
-    const newStart =
-        timeToMinutes(start);
+    if (type === "now") {
 
-    const newEnd =
-        newStart +
-        duration * 60;
+        const now =
+            new Date();
 
 
-    for (const booking of bookings) {
+        document.getElementById(
+            "date"
+        ).value =
+            todayString();
 
-        if (
-            booking.date !==
-            date
-        ) {
-            continue;
+
+        let minutes =
+            now.getHours() * 60 +
+            now.getMinutes();
+
+
+        minutes =
+            Math.ceil(
+                minutes / 30
+            ) * 30;
+
+
+        if (minutes >= 1440) {
+            minutes = 0;
         }
 
 
-        const existingStart =
-            timeToMinutes(
-                booking.start
-            );
-
-        const existingEnd =
-            existingStart +
-            booking.duration * 60;
-
-
-        /*
-        Två tider överlappar om:
-
-        ny start < gammal slut
-        OCH
-        ny slut > gammal start
-        */
-
-        if (
-            newStart < existingEnd &&
-            newEnd > existingStart
-        ) {
-
-            return booking;
-
-        }
+        document.getElementById(
+            "startTime"
+        ).value =
+            minutesToTime(minutes);
 
     }
 
 
-    return null;
-}
+    if (type === "today") {
 
-
-/*
-==========================================================
- VISA MEDDELANDE
-==========================================================
-*/
-
-function showMessage(
-    text,
-    type
-) {
-
-    const message =
         document.getElementById(
-            "message"
+            "date"
+        ).value =
+            todayString();
+
+    }
+
+
+    if (type === "tomorrow") {
+
+        document.getElementById(
+            "date"
+        ).value =
+            datePlusDays(1);
+
+    }
+
+
+    document
+        .querySelectorAll(
+            ".quick button"
+        )
+        .forEach(button => {
+
+            button.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    const button =
+        document.getElementById(
+            type + "Button"
         );
 
-    message.textContent =
-        text;
 
-    message.className =
-        `message show ${type}`;
+    if (button) {
 
+        button.classList.add(
+            "active"
+        );
 
-    setTimeout(() => {
-
-        message.className =
-            "message";
-
-    }, 3500);
-}
+    }
 
 
-/*
-==========================================================
- BOKA
-==========================================================
-*/
+    updatePreview();
+};
 
-function bookSauna() {
+
+/* =====================================================
+   BOKA BASTU
+===================================================== */
+
+window.bookSauna =
+async function() {
+
+    if (!currentUser) {
+
+        showMessage(
+            "Ansluter till bokningssystemet...",
+            "info"
+        );
+
+        return;
+    }
+
 
     const date =
         document.getElementById(
             "date"
         ).value;
 
+
     const start =
         document.getElementById(
             "startTime"
         ).value;
+
 
     const duration =
         Number(
@@ -1465,11 +1655,6 @@ function bookSauna() {
         return;
     }
 
-
-    /*
-    Kontrollera att tiden inte
-    redan passerat.
-    */
 
     const selected =
         new Date(
@@ -1494,30 +1679,23 @@ function bookSauna() {
 
 
     /*
-    Kontrollera överlappning.
+    En bastubokning får inte gå
+    över midnatt.
     */
 
-    const conflict =
-        hasConflict(
-            date,
-            start,
-            duration
-        );
+    const startMinutes =
+        timeToMinutes(start);
 
 
-    if (conflict) {
+    const endMinutes =
+        startMinutes +
+        duration * 60;
 
-        const conflictEnd =
-            minutesToTime(
-                timeToMinutes(
-                    conflict.start
-                ) +
-                conflict.duration * 60
-            );
 
+    if (endMinutes > 1440) {
 
         showMessage(
-            `Tiden är redan bokad ${conflict.start} → ${conflictEnd}.`,
+            "Bokningen kan inte gå över midnatt.",
             "error"
         );
 
@@ -1525,144 +1703,304 @@ function bookSauna() {
     }
 
 
-    /*
-    Lägg till bokningen.
-
-    I Firebase-versionen kommer
-    detta istället att skrivas
-    till Firestore.
-    */
-
-    bookings.push({
-
-        id:
-            Date.now(),
-
-        date:
-            date,
-
-        start:
-            start,
-
-        duration:
-            duration
-
-    });
+    const button =
+        document.getElementById(
+            "bookButton"
+        );
 
 
-    renderBookings();
+    button.disabled =
+        true;
 
-    updateStatus();
+    button.textContent =
+        "Bokar...";
 
-    updatePreview();
+
+    try {
+
+        /*
+        Firestore-transaktion.
+
+        Vi läser dagens bokningar och
+        kontrollerar överlappning innan
+        den nya bokningen skrivs.
+
+        Det minskar risken att två personer
+        bokar samma tid samtidigt.
+        */
+
+        const bookingsRef =
+            collection(
+                db,
+                "bookings"
+            );
 
 
-    showMessage(
-        "Bastun är bokad! 🔥",
-        "success"
+        await runTransaction(
+            db,
+            async transaction => {
+
+                const q =
+                    query(
+                        bookingsRef,
+                        where(
+                            "date",
+                            "==",
+                            date
+                        )
+                    );
+
+
+                const snapshot =
+                    await transaction.get(q);
+
+
+                for (
+                    const docSnap
+                    of snapshot.docs
+                ) {
+
+                    const existing =
+                        docSnap.data();
+
+
+                    const existingStart =
+                        timeToMinutes(
+                            existing.start
+                        );
+
+
+                    const existingEnd =
+                        existingStart +
+                        Number(
+                            existing.duration
+                        ) * 60;
+
+
+                    if (
+                        startMinutes <
+                        existingEnd &&
+                        endMinutes >
+                        existingStart
+                    ) {
+
+                        throw new Error(
+                            "CONFLICT"
+                        );
+
+                    }
+
+                }
+
+
+                const newDoc =
+                    doc(
+                        bookingsRef
+                    );
+
+
+                transaction.set(
+                    newDoc,
+                    {
+
+                        date:
+                            date,
+
+                        start:
+                            start,
+
+                        duration:
+                            duration,
+
+                        createdAt:
+                            new Date(),
+
+                        uid:
+                            currentUser.uid
+
+                    }
+                );
+
+            }
+        );
+
+
+        showMessage(
+            "Bastun är bokad! 🔥",
+            "success"
+        );
+
+
+        updatePreview();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        if (
+            error.message ===
+            "CONFLICT"
+        ) {
+
+            showMessage(
+                "Den tiden är redan bokad. Välj en annan tid.",
+                "error"
+            );
+
+        } else {
+
+            showMessage(
+                "Kunde inte spara bokningen. Försök igen.",
+                "error"
+            );
+
+        }
+
+    } finally {
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "🔥 Boka bastu";
+
+    }
+};
+
+
+/* =====================================================
+   LYSSNA PÅ FIRESTORE
+===================================================== */
+
+function listenForBookings() {
+
+    const bookingsRef =
+        collection(
+            db,
+            "bookings"
+        );
+
+
+    const q =
+        query(
+            bookingsRef,
+            orderBy(
+                "date"
+            ),
+            orderBy(
+                "start"
+            )
+        );
+
+
+    onSnapshot(
+        q,
+
+        snapshot => {
+
+            bookings =
+                snapshot.docs.map(
+                    docSnap => ({
+
+                        id:
+                            docSnap.id,
+
+                        ...docSnap.data()
+
+                    })
+                );
+
+
+            renderBookings();
+
+            updateStatus();
+
+        },
+
+        error => {
+
+            console.error(
+                "Firestore error:",
+                error
+            );
+
+
+            showMessage(
+                "Kunde inte läsa bokningarna.",
+                "error"
+            );
+
+        }
     );
 }
 
 
+/* =====================================================
+   STARTA ANONYM INLOGGNING
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        if (user) {
+
+            currentUser =
+                user;
+
+            listenForBookings();
+
+        }
+
+    }
+);
+
+
+signInAnonymously(auth)
+    .catch(error => {
+
+        console.error(error);
+
+        showMessage(
+            "Kunde inte ansluta till Firebase.",
+            "error"
+        );
+
+    });
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.getElementById(
+    "date"
+).value =
+    todayString();
+
+
+document.getElementById(
+    "startTime"
+).value =
+    "18:00";
+
+
+updatePreview();
+
+
 /*
-==========================================================
- START
-==========================================================
-*/
+Uppdatera status var 15:e sekund.
 
-function init() {
-
-    /*
-    Förvalt datum.
-    */
-
-    document.getElementById(
-        "date"
-    ).value =
-        todayString();
-
-
-    /*
-    Förvald tid.
-    */
-
-    document.getElementById(
-        "startTime"
-    ).value =
-        "18:00";
-
-
-    updatePreview();
-
-    renderBookings();
-
-    updateStatus();
-
-}
-
-
-/*
-==========================================================
- AUTOMATISK STATUSUPPDATERING
- ---------------------------------------------------------
- Gör att exempelvis:
-
- 17:59 → LEDIG
- 18:00 → BOKAD
- 21:00 → LEDIG
-
- utan att sidan behöver laddas om.
-==========================================================
+Firestore uppdaterar samtidigt
+bokningslistan i realtid.
 */
 
 setInterval(
     updateStatus,
     15000
 );
-
-
-init();
-
-
-/*
-==========================================================
- FIREBASE – KOMMER I NÄSTA STEG
-==========================================================
-
-När vi kopplar Firebase kommer ungefär detta
-att ersätta den lokala "bookings"-arrayen:
-
-import { initializeApp }
-    from "firebase/app";
-
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs
-}
-from "firebase/firestore";
-
-const firebaseConfig = {
-    apiKey: "...",
-    authDomain: "...",
-    projectId: "...",
-    storageBucket: "...",
-    messagingSenderId: "...",
-    appId: "..."
-};
-
-const app =
-    initializeApp(firebaseConfig);
-
-const db =
-    getFirestore(app);
-
-Därefter hämtas och sparas bokningarna
-i Firestore.
-
-==========================================================
-*/
 
 </script>
 
