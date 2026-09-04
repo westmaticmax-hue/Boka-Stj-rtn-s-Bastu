@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -16,6 +15,10 @@
 
 <style>
 
+/* =====================================================
+   GRUND
+===================================================== */
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
@@ -24,12 +27,16 @@
 :root {
     --bg: #17110d;
     --bg2: #211710;
+
     --card: rgba(255,255,255,.065);
     --border: rgba(255,255,255,.10);
+
     --text: #fff8ef;
     --muted: #b9aaa0;
+
     --orange: #ff9d45;
     --orange2: #ff6b35;
+
     --green: #72d39a;
     --red: #ff7568;
 }
@@ -38,6 +45,7 @@ html,
 body {
     margin: 0;
     min-height: 100%;
+
     background:
         radial-gradient(
             circle at 50% -10%,
@@ -71,16 +79,22 @@ body {
 .app {
     width: 100%;
     max-width: 520px;
-    margin: auto;
+    margin: 0 auto;
 }
 
-/* HEADER */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header {
     display: flex;
     align-items: center;
+
     gap: 14px;
-    padding: 8px 4px 22px;
+
+    padding:
+        8px 4px 22px;
 }
 
 .fire {
@@ -100,8 +114,8 @@ body {
             rgba(255,107,53,.08)
         );
 
-    border: 1px solid
-        rgba(255,157,69,.22);
+    border:
+        1px solid rgba(255,157,69,.22);
 
     font-size: 27px;
 
@@ -114,6 +128,7 @@ body {
     margin: 0;
 
     font-size: 25px;
+
     font-weight: 750;
 
     letter-spacing: -.6px;
@@ -127,12 +142,16 @@ body {
     font-size: 13px;
 }
 
-/* CARD */
+
+/* =====================================================
+   KORT
+===================================================== */
 
 .card {
     background: var(--card);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid var(--border);
 
     border-radius: 24px;
 
@@ -145,12 +164,16 @@ body {
     margin-bottom: 15px;
 }
 
-/* STATUS */
+
+/* =====================================================
+   STATUS
+===================================================== */
 
 .status {
     padding: 20px;
 
     position: relative;
+
     overflow: hidden;
 }
 
@@ -175,6 +198,7 @@ body {
     color: var(--muted);
 
     font-size: 11px;
+
     font-weight: 700;
 
     letter-spacing: 1.3px;
@@ -184,7 +208,10 @@ body {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
+
+    gap: 10px;
 
     margin-top: 8px;
 }
@@ -203,9 +230,12 @@ body {
     border-radius: 20px;
 
     font-size: 11px;
+
     font-weight: 800;
 
     letter-spacing: .5px;
+
+    white-space: nowrap;
 }
 
 .badge.free {
@@ -236,7 +266,63 @@ body {
     font-size: 13px;
 }
 
-/* QUICK */
+
+/* =====================================================
+   MEDDELANDE
+===================================================== */
+
+.message {
+    display: none;
+
+    margin-bottom: 15px;
+
+    padding: 14px 16px;
+
+    border-radius: 16px;
+
+    font-size: 13px;
+
+    font-weight: 650;
+}
+
+.message.show {
+    display: block;
+}
+
+.message.error {
+    background:
+        rgba(255,117,104,.10);
+
+    color: #ff9b91;
+
+    border:
+        1px solid rgba(255,117,104,.15);
+}
+
+.message.success {
+    background:
+        rgba(114,211,154,.10);
+
+    color: #8ee0ac;
+
+    border:
+        1px solid rgba(114,211,154,.15);
+}
+
+.message.info {
+    background:
+        rgba(255,157,69,.08);
+
+    color: #ffc38e;
+
+    border:
+        1px solid rgba(255,157,69,.12);
+}
+
+
+/* =====================================================
+   SNABBVAL
+===================================================== */
 
 .quick {
     display: grid;
@@ -263,6 +349,7 @@ body {
     color: var(--muted);
 
     font-size: 14px;
+
     font-weight: 700;
 
     cursor: pointer;
@@ -279,7 +366,10 @@ body {
         rgba(255,255,255,.07);
 }
 
-/* FORM */
+
+/* =====================================================
+   FORMULÄR
+===================================================== */
 
 .form {
     padding: 20px;
@@ -301,6 +391,7 @@ body {
     color: var(--muted);
 
     font-size: 11px;
+
     font-weight: 700;
 
     letter-spacing: 1px;
@@ -341,6 +432,7 @@ input:focus {
 
 select option {
     background: #211710;
+
     color: white;
 }
 
@@ -353,7 +445,10 @@ select option {
     gap: 10px;
 }
 
-/* PREVIEW */
+
+/* =====================================================
+   FÖRHANDSVISNING
+===================================================== */
 
 .preview {
     margin-top: 18px;
@@ -373,6 +468,7 @@ select option {
     color: var(--muted);
 
     font-size: 11px;
+
     font-weight: 700;
 
     letter-spacing: .8px;
@@ -382,6 +478,7 @@ select option {
     margin-top: 4px;
 
     font-size: 19px;
+
     font-weight: 750;
 }
 
@@ -393,10 +490,12 @@ select option {
     font-size: 12px;
 }
 
-/* BOOK BUTTON */
+
+/* =====================================================
+   BOKNINGSKNAPP
+===================================================== */
 
 .book-button {
-
     width: 100%;
 
     margin-top: 16px;
@@ -425,6 +524,10 @@ select option {
         rgba(255,107,53,.20);
 
     cursor: pointer;
+
+    transition:
+        transform .12s ease,
+        opacity .12s ease;
 }
 
 .book-button:active {
@@ -437,17 +540,20 @@ select option {
     cursor: not-allowed;
 }
 
-/* BOOKINGS */
+
+/* =====================================================
+   BOKNINGAR
+===================================================== */
 
 .bookings {
     padding: 20px;
 }
 
 .section-title {
-
     display: flex;
 
     justify-content: space-between;
+
     align-items: center;
 
     margin-bottom: 14px;
@@ -465,10 +571,7 @@ select option {
     font-size: 11px;
 }
 
-/* BOOKING */
-
 .booking {
-
     display: flex;
 
     align-items: center;
@@ -486,7 +589,6 @@ select option {
 }
 
 .booking-date {
-
     width: 48px;
 
     flex: 0 0 48px;
@@ -495,7 +597,6 @@ select option {
 }
 
 .booking-date .day {
-
     display: block;
 
     font-size: 20px;
@@ -504,7 +605,6 @@ select option {
 }
 
 .booking-date .month {
-
     display: block;
 
     margin-top: -2px;
@@ -520,17 +620,17 @@ select option {
 
 .booking-main {
     flex: 1;
+
+    min-width: 0;
 }
 
 .booking-time {
-
     font-size: 16px;
 
     font-weight: 750;
 }
 
 .booking-meta {
-
     margin-top: 3px;
 
     color: var(--muted);
@@ -539,16 +639,15 @@ select option {
 }
 
 .booking-duration {
-
     color: var(--muted);
 
     font-size: 12px;
+
+    white-space: nowrap;
 }
 
-/* EMPTY */
-
-.empty {
-
+.empty,
+.loading {
     padding: 20px 5px;
 
     color: var(--muted);
@@ -558,77 +657,12 @@ select option {
     font-size: 13px;
 }
 
-/* MESSAGE */
 
-.message {
-
-    display: none;
-
-    margin-bottom: 15px;
-
-    padding: 14px 16px;
-
-    border-radius: 16px;
-
-    font-size: 13px;
-
-    font-weight: 650;
-}
-
-.message.show {
-    display: block;
-}
-
-.message.error {
-
-    background:
-        rgba(255,117,104,.10);
-
-    color: #ff9b91;
-
-    border:
-        1px solid rgba(255,117,104,.15);
-}
-
-.message.success {
-
-    background:
-        rgba(114,211,154,.10);
-
-    color: #8ee0ac;
-
-    border:
-        1px solid rgba(114,211,154,.15);
-}
-
-.message.info {
-
-    background:
-        rgba(255,157,69,.08);
-
-    color: #ffc38e;
-
-    border:
-        1px solid rgba(255,157,69,.12);
-}
-
-/* LOADING */
-
-.loading {
-
-    text-align: center;
-
-    padding: 15px;
-
-    color: var(--muted);
-
-    font-size: 13px;
-}
-
-/* FOOTER */
+/* =====================================================
+   FOOTER
+===================================================== */
 
 .footer {
-
     text-align: center;
 
     color:
@@ -636,8 +670,14 @@ select option {
 
     font-size: 10px;
 
-    padding: 10px 0 4px;
+    padding:
+        10px 0 4px;
 }
+
+
+/* =====================================================
+   MOBIL
+===================================================== */
 
 @media (max-width:380px) {
 
@@ -648,6 +688,7 @@ select option {
     .header h1 {
         font-size: 23px;
     }
+
 }
 
 </style>
@@ -658,227 +699,252 @@ select option {
 
 <div class="app">
 
-    <!-- HEADER -->
 
-    <header class="header">
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-        <div class="fire">
-            🔥
-        </div>
+<header class="header">
 
-        <div>
+    <div class="fire">
+        🔥
+    </div>
 
-            <h1>
-                Boka bastun
-            </h1>
+    <div>
 
-            <p>
-                Lugn värme. Enkelt bokat.
-            </p>
+        <h1>
+            Boka bastun
+        </h1>
 
-        </div>
+        <p>
+            Lugn värme. Enkelt bokat.
+        </p>
 
-    </header>
+    </div>
+
+</header>
 
 
-    <!-- STATUS -->
+<!-- =====================================================
+     STATUS
+===================================================== -->
 
-    <section class="card status">
+<section class="card status">
 
-        <div class="status-label">
-            STATUS JUST NU
-        </div>
+    <div class="status-label">
+        STATUS JUST NU
+    </div>
 
-        <div class="status-row">
+    <div class="status-row">
 
-            <div
-                id="statusTitle"
-                class="status-title">
+        <div
+            id="statusTitle"
+            class="status-title">
 
-                Ledig
-
-            </div>
-
-            <div
-                id="statusBadge"
-                class="badge free">
-
-                LEDIG
-
-            </div>
+            Ledig
 
         </div>
 
         <div
-            id="statusInfo"
-            class="status-info">
+            id="statusBadge"
+            class="badge free">
 
-            Hämtar bokningar...
+            LEDIG
 
         </div>
 
-    </section>
-
-
-    <!-- MESSAGE -->
+    </div>
 
     <div
-        id="message"
-        class="message">
+        id="statusInfo"
+        class="status-info">
+
+        Ansluter till bokningssystemet...
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEDDELANDE
+===================================================== -->
+
+<div
+    id="message"
+    class="message">
+</div>
+
+
+<!-- =====================================================
+     SNABBVAL
+===================================================== -->
+
+<section class="card quick">
+
+    <button
+        id="nowButton"
+        onclick="selectQuick('now')">
+
+        Nu
+
+    </button>
+
+
+    <button
+        id="todayButton"
+        onclick="selectQuick('today')">
+
+        Idag
+
+    </button>
+
+
+    <button
+        id="tomorrowButton"
+        onclick="selectQuick('tomorrow')">
+
+        Imorgon
+
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     BOKNINGSFORMULÄR
+===================================================== -->
+
+<section class="card form">
+
+
+    <div class="field">
+
+        <label for="date">
+            DATUM
+        </label>
+
+        <input
+            id="date"
+            type="date"
+            onchange="updatePreview()">
+
     </div>
 
 
-    <!-- QUICK -->
+    <div class="field">
 
-    <section class="card quick">
+        <label>
+            TID
+        </label>
 
-        <button
-            id="nowButton"
-            onclick="selectQuick('now')">
-
-            Nu
-
-        </button>
-
-        <button
-            id="todayButton"
-            onclick="selectQuick('today')">
-
-            Idag
-
-        </button>
-
-        <button
-            id="tomorrowButton"
-            onclick="selectQuick('tomorrow')">
-
-            Imorgon
-
-        </button>
-
-    </section>
-
-
-    <!-- FORM -->
-
-    <section class="card form">
-
-        <div class="field">
-
-            <label for="date">
-                DATUM
-            </label>
+        <div class="time-grid">
 
             <input
-                id="date"
-                type="date"
+                id="startTime"
+                type="time"
                 onchange="updatePreview()">
 
-        </div>
 
+            <select
+                id="duration"
+                onchange="updatePreview()">
 
-        <div class="field">
+                <option value="1">
+                    1 timme
+                </option>
 
-            <label>
-                TID
-            </label>
+                <option value="2">
+                    2 timmar
+                </option>
 
-            <div class="time-grid">
+                <option value="3"
+                        selected>
+                    3 timmar
+                </option>
 
-                <input
-                    id="startTime"
-                    type="time"
-                    onchange="updatePreview()">
-
-                <select
-                    id="duration"
-                    onchange="updatePreview()">
-
-                    <option value="1">
-                        1 timme
-                    </option>
-
-                    <option value="2">
-                        2 timmar
-                    </option>
-
-                    <option value="3"
-                            selected>
-                        3 timmar
-                    </option>
-
-                </select>
-
-            </div>
+            </select>
 
         </div>
 
+    </div>
 
-        <div class="preview">
 
-            <div class="preview-label">
-                DIN BOKNING
-            </div>
+    <!-- FÖRHANDSVISNING -->
 
-            <div
-                id="previewTime"
-                class="preview-time">
+    <div class="preview">
 
-                18:00 → 21:00
-
-            </div>
-
-            <div
-                id="previewDate"
-                class="preview-date">
-
-            </div>
-
+        <div class="preview-label">
+            DIN BOKNING
         </div>
 
+        <div
+            id="previewTime"
+            class="preview-time">
 
-        <button
-            id="bookButton"
-            class="book-button"
-            onclick="bookSauna()">
-
-            🔥 Boka bastu
-
-        </button>
-
-    </section>
-
-
-    <!-- BOOKINGS -->
-
-    <section class="card bookings">
-
-        <div class="section-title">
-
-            <strong>
-                KOMMANDE BOKNINGAR
-            </strong>
-
-            <span id="bookingCount">
-                0 bokningar
-            </span>
+            18:00 → 21:00
 
         </div>
 
         <div
-            id="bookingList"
-            class="loading">
-
-            Hämtar bokningar...
+            id="previewDate"
+            class="preview-date">
 
         </div>
 
-    </section>
-
-
-    <div class="footer">
-        Bastubokning · 2026
     </div>
+
+
+    <!-- BOKA -->
+
+    <button
+        id="bookButton"
+        class="book-button"
+        onclick="bookSauna()">
+
+        🔥 Boka bastu
+
+    </button>
+
+</section>
+
+
+<!-- =====================================================
+     KOMMANDE BOKNINGAR
+===================================================== -->
+
+<section class="card bookings">
+
+    <div class="section-title">
+
+        <strong>
+            KOMMANDE BOKNINGAR
+        </strong>
+
+        <span id="bookingCount">
+            0 bokningar
+        </span>
+
+    </div>
+
+
+    <div
+        id="bookingList"
+        class="loading">
+
+        Hämtar bokningar...
+
+    </div>
+
+</section>
+
+
+<div class="footer">
+
+    Bastubokning · 2026
+
+</div>
+
 
 </div>
 
@@ -889,9 +955,16 @@ select option {
 
 <script type="module">
 
+/*
+==========================================================
+ FIREBASE SDK
+==========================================================
+*/
+
 import {
     initializeApp
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
@@ -900,11 +973,11 @@ import {
     collection,
     query,
     where,
-    orderBy,
     onSnapshot,
     runTransaction,
     doc
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
@@ -912,13 +985,16 @@ import {
     getAuth,
     signInAnonymously,
     onAuthStateChanged
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-/* =====================================================
-   DIN FIREBASE-KONFIGURATION
-===================================================== */
+/*
+==========================================================
+ FIREBASE CONFIG
+==========================================================
+*/
 
 const firebaseConfig = {
 
@@ -942,49 +1018,64 @@ const firebaseConfig = {
 };
 
 
-/* =====================================================
-   START FIREBASE
-===================================================== */
+/*
+==========================================================
+ STARTA FIREBASE
+==========================================================
+*/
 
 const app =
-    initializeApp(firebaseConfig);
+    initializeApp(
+        firebaseConfig
+    );
+
 
 const db =
     getFirestore(app);
+
 
 const auth =
     getAuth(app);
 
 
-/* =====================================================
-   GLOBALA VARIABLER
-===================================================== */
+/*
+==========================================================
+ GLOBALA VARIABLER
+==========================================================
+*/
 
 let bookings = [];
 
 let currentUser = null;
 
 
-/* =====================================================
-   DATUM
-===================================================== */
+/*
+==========================================================
+ DATUM
+==========================================================
+*/
 
 function todayString() {
 
-    const now = new Date();
+    const now =
+        new Date();
+
 
     const y =
         now.getFullYear();
+
 
     const m =
         String(
             now.getMonth() + 1
         ).padStart(2, "0");
 
+
     const d =
         String(
             now.getDate()
         ).padStart(2, "0");
+
 
     return `${y}-${m}-${d}`;
 }
@@ -995,39 +1086,47 @@ function datePlusDays(days) {
     const date =
         new Date();
 
+
     date.setDate(
         date.getDate() + days
     );
 
+
     const y =
         date.getFullYear();
+
 
     const m =
         String(
             date.getMonth() + 1
         ).padStart(2, "0");
 
+
     const d =
         String(
             date.getDate()
         ).padStart(2, "0");
 
+
     return `${y}-${m}-${d}`;
 }
 
 
-/* =====================================================
-   TID
-===================================================== */
+/*
+==========================================================
+ TID
+==========================================================
+*/
 
 function timeToMinutes(time) {
 
-    const [hours, minutes] =
-        time.split(":").map(Number);
+    const parts =
+        time.split(":");
+
 
     return (
-        hours * 60 +
-        minutes
+        Number(parts[0]) * 60 +
+        Number(parts[1])
     );
 }
 
@@ -1035,29 +1134,41 @@ function timeToMinutes(time) {
 function minutesToTime(minutes) {
 
     const hours =
-        Math.floor(minutes / 60);
+        Math.floor(
+            minutes / 60
+        );
+
 
     const mins =
         minutes % 60;
 
+
     return (
-        String(hours).padStart(2, "0") +
-        ":" +
-        String(mins).padStart(2, "0")
+        String(hours)
+            .padStart(2, "0")
+        +
+        ":"
+        +
+        String(mins)
+            .padStart(2, "0")
     );
 }
 
 
-/* =====================================================
-   DATUM VISNING
-===================================================== */
+/*
+==========================================================
+ DATUM
+==========================================================
+*/
 
 function formatDate(dateString) {
 
     const date =
         new Date(
-            dateString + "T12:00:00"
+            dateString +
+            "T12:00:00"
         );
+
 
     return date.toLocaleDateString(
         "sv-SE",
@@ -1074,8 +1185,10 @@ function monthShort(dateString) {
 
     const date =
         new Date(
-            dateString + "T12:00:00"
+            dateString +
+            "T12:00:00"
         );
+
 
     return date
         .toLocaleDateString(
@@ -1093,16 +1206,20 @@ function dayNumber(dateString) {
 
     const date =
         new Date(
-            dateString + "T12:00:00"
+            dateString +
+            "T12:00:00"
         );
+
 
     return date.getDate();
 }
 
 
-/* =====================================================
-   MEDDELANDE
-===================================================== */
+/*
+==========================================================
+ MEDDELANDEN
+==========================================================
+*/
 
 function showMessage(
     text,
@@ -1114,25 +1231,32 @@ function showMessage(
             "message"
         );
 
+
     message.textContent =
         text;
+
 
     message.className =
         "message show " + type;
 
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        message.className =
-            "message";
+            message.className =
+                "message";
 
-    }, 4000);
+        },
+        4000
+    );
 }
 
 
-/* =====================================================
-   RENDERA BOKNINGAR
-===================================================== */
+/*
+==========================================================
+ RENDERA BOKNINGAR
+==========================================================
+*/
 
 function renderBookings() {
 
@@ -1140,6 +1264,7 @@ function renderBookings() {
         document.getElementById(
             "bookingList"
         );
+
 
     const count =
         document.getElementById(
@@ -1153,40 +1278,47 @@ function renderBookings() {
 
     const upcoming =
         bookings
-        .filter(booking => {
+            .filter(
+                booking => {
 
-            const start =
-                new Date(
-                    booking.date +
-                    "T" +
-                    booking.start
-                );
+                    const start =
+                        new Date(
+                            booking.date +
+                            "T" +
+                            booking.start
+                        );
 
-            return (
-                start.getTime() >=
-                now
+
+                    return (
+                        start.getTime() >=
+                        now
+                    );
+
+                }
+            )
+            .sort(
+                (a, b) => {
+
+                    const A =
+                        new Date(
+                            a.date +
+                            "T" +
+                            a.start
+                        );
+
+
+                    const B =
+                        new Date(
+                            b.date +
+                            "T" +
+                            b.start
+                        );
+
+
+                    return A - B;
+
+                }
             );
-
-        })
-        .sort((a, b) => {
-
-            const A =
-                new Date(
-                    a.date +
-                    "T" +
-                    a.start
-                );
-
-            const B =
-                new Date(
-                    b.date +
-                    "T" +
-                    b.start
-                );
-
-            return A - B;
-
-        });
 
 
     count.textContent =
@@ -1197,102 +1329,116 @@ function renderBookings() {
         }`;
 
 
-    if (!upcoming.length) {
+    if (
+        upcoming.length === 0
+    ) {
 
         list.innerHTML =
-            `<div class="empty">
+            `
+            <div class="empty">
                 Inga kommande bokningar.
-             </div>`;
+            </div>
+            `;
 
         return;
     }
 
 
     list.innerHTML =
-        upcoming.map(
-            booking => {
+        upcoming
+            .map(
+                booking => {
 
-                const end =
-                    timeToMinutes(
-                        booking.start
-                    ) +
-                    Number(
-                        booking.duration
-                    ) * 60;
-
-
-                const endTime =
-                    minutesToTime(end);
+                    const end =
+                        timeToMinutes(
+                            booking.start
+                        )
+                        +
+                        Number(
+                            booking.duration
+                        ) * 60;
 
 
-                return `
-
-                <div class="booking">
-
-                    <div class="booking-date">
-
-                        <span class="day">
-                            ${dayNumber(
-                                booking.date
-                            )}
-                        </span>
-
-                        <span class="month">
-                            ${monthShort(
-                                booking.date
-                            )}
-                        </span>
-
-                    </div>
+                    const endTime =
+                        minutesToTime(
+                            end
+                        );
 
 
-                    <div class="booking-main">
+                    return `
 
-                        <div class="booking-time">
+                    <div class="booking">
 
-                            ${booking.start}
-                            →
-                            ${endTime}
+                        <div class="booking-date">
+
+                            <span class="day">
+                                ${dayNumber(
+                                    booking.date
+                                )}
+                            </span>
+
+                            <span class="month">
+                                ${monthShort(
+                                    booking.date
+                                )}
+                            </span>
 
                         </div>
 
-                        <div class="booking-meta">
 
-                            ${formatDate(
-                                booking.date
-                            )}
+                        <div class="booking-main">
+
+                            <div class="booking-time">
+
+                                ${booking.start}
+                                →
+                                ${endTime}
+
+                            </div>
+
+
+                            <div class="booking-meta">
+
+                                ${formatDate(
+                                    booking.date
+                                )}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="booking-duration">
+
+                            ${booking.duration} h
 
                         </div>
 
                     </div>
 
+                    `;
 
-                    <div class="booking-duration">
-
-                        ${booking.duration} h
-
-                    </div>
-
-                </div>
-
-                `;
-
-            }
-        ).join("");
+                }
+            )
+            .join("");
 }
 
 
-/* =====================================================
-   STATUS JUST NU
-===================================================== */
+/*
+==========================================================
+ STATUS
+==========================================================
+*/
 
 function updateStatus() {
 
     const now =
         new Date();
 
+
     const currentDate =
         todayString();
+
 
     const currentMinutes =
         now.getHours() * 60 +
@@ -1303,7 +1449,10 @@ function updateStatus() {
         null;
 
 
-    for (const booking of bookings) {
+    for (
+        const booking
+        of bookings
+    ) {
 
         if (
             booking.date !==
@@ -1318,9 +1467,12 @@ function updateStatus() {
                 booking.start
             );
 
+
         const end =
             start +
-            Number(booking.duration) * 60;
+            Number(
+                booking.duration
+            ) * 60;
 
 
         if (
@@ -1333,6 +1485,7 @@ function updateStatus() {
 
             break;
         }
+
     }
 
 
@@ -1341,10 +1494,12 @@ function updateStatus() {
             "statusTitle"
         );
 
+
     const badge =
         document.getElementById(
             "statusBadge"
         );
+
 
     const info =
         document.getElementById(
@@ -1357,8 +1512,11 @@ function updateStatus() {
         const end =
             timeToMinutes(
                 active.start
-            ) +
-            Number(active.duration) * 60;
+            )
+            +
+            Number(
+                active.duration
+            ) * 60;
 
 
         title.textContent =
@@ -1376,7 +1534,9 @@ function updateStatus() {
         info.textContent =
             `Bokad till ${minutesToTime(end)}.`;
 
-    } else {
+    }
+
+    else {
 
         title.textContent =
             "Ledig";
@@ -1401,19 +1561,24 @@ function updateStatus() {
                     next.date
                 )} kl. ${next.start}.`;
 
-        } else {
+        }
+
+        else {
 
             info.textContent =
                 "Bastun är ledig.";
 
         }
+
     }
 }
 
 
-/* =====================================================
-   NÄSTA BOKNING
-===================================================== */
+/*
+==========================================================
+ NÄSTA BOKNING
+==========================================================
+*/
 
 function findNextBooking() {
 
@@ -1425,7 +1590,10 @@ function findNextBooking() {
         null;
 
 
-    for (const booking of bookings) {
+    for (
+        const booking
+        of bookings
+    ) {
 
         const date =
             new Date(
@@ -1443,8 +1611,10 @@ function findNextBooking() {
 
 
         if (
-            !closest ||
-            date.getTime() <
+            !closest
+            ||
+            date.getTime()
+            <
             new Date(
                 closest.date +
                 "T" +
@@ -1456,6 +1626,7 @@ function findNextBooking() {
                 booking;
 
         }
+
     }
 
 
@@ -1463,11 +1634,14 @@ function findNextBooking() {
 }
 
 
-/* =====================================================
-   FÖRHANDSVISNING
-===================================================== */
+/*
+==========================================================
+ FÖRHANDSVISNING
+==========================================================
+*/
 
-function updatePreview() {
+window.updatePreview =
+function() {
 
     const date =
         document.getElementById(
@@ -1489,13 +1663,17 @@ function updatePreview() {
         );
 
 
-    if (!date || !start) {
+    if (
+        !date ||
+        !start
+    ) {
         return;
     }
 
 
     const end =
-        timeToMinutes(start) +
+        timeToMinutes(start)
+        +
         duration * 60;
 
 
@@ -1509,17 +1687,21 @@ function updatePreview() {
         "previewDate"
     ).textContent =
         formatDate(date);
-}
+};
 
 
-/* =====================================================
-   QUICKVAL
-===================================================== */
+/*
+==========================================================
+ SNABBVAL
+==========================================================
+*/
 
 window.selectQuick =
 function(type) {
 
-    if (type === "now") {
+    if (
+        type === "now"
+    ) {
 
         const now =
             new Date();
@@ -1542,7 +1724,9 @@ function(type) {
             ) * 30;
 
 
-        if (minutes >= 1440) {
+        if (
+            minutes >= 1440
+        ) {
             minutes = 0;
         }
 
@@ -1550,12 +1734,16 @@ function(type) {
         document.getElementById(
             "startTime"
         ).value =
-            minutesToTime(minutes);
+            minutesToTime(
+                minutes
+            );
 
     }
 
 
-    if (type === "today") {
+    if (
+        type === "today"
+    ) {
 
         document.getElementById(
             "date"
@@ -1565,7 +1753,9 @@ function(type) {
     }
 
 
-    if (type === "tomorrow") {
+    if (
+        type === "tomorrow"
+    ) {
 
         document.getElementById(
             "date"
@@ -1579,18 +1769,21 @@ function(type) {
         .querySelectorAll(
             ".quick button"
         )
-        .forEach(button => {
+        .forEach(
+            button => {
 
-            button.classList.remove(
-                "active"
-            );
+                button.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
 
     const button =
         document.getElementById(
-            type + "Button"
+            type +
+            "Button"
         );
 
 
@@ -1607,17 +1800,21 @@ function(type) {
 };
 
 
-/* =====================================================
-   BOKA BASTU
-===================================================== */
+/*
+==========================================================
+ BOKA
+==========================================================
+*/
 
 window.bookSauna =
 async function() {
 
-    if (!currentUser) {
+    if (
+        !currentUser
+    ) {
 
         showMessage(
-            "Ansluter till bokningssystemet...",
+            "Ansluter till Firebase...",
             "info"
         );
 
@@ -1645,7 +1842,10 @@ async function() {
         );
 
 
-    if (!date || !start) {
+    if (
+        !date ||
+        !start
+    ) {
 
         showMessage(
             "Välj datum och tid.",
@@ -1665,7 +1865,8 @@ async function() {
 
 
     if (
-        selected.getTime() <
+        selected.getTime()
+        <
         Date.now()
     ) {
 
@@ -1678,13 +1879,10 @@ async function() {
     }
 
 
-    /*
-    En bastubokning får inte gå
-    över midnatt.
-    */
-
     const startMinutes =
-        timeToMinutes(start);
+        timeToMinutes(
+            start
+        );
 
 
     const endMinutes =
@@ -1692,7 +1890,9 @@ async function() {
         duration * 60;
 
 
-    if (endMinutes > 1440) {
+    if (
+        endMinutes > 1440
+    ) {
 
         showMessage(
             "Bokningen kan inte gå över midnatt.",
@@ -1712,22 +1912,12 @@ async function() {
     button.disabled =
         true;
 
+
     button.textContent =
         "Bokar...";
 
 
     try {
-
-        /*
-        Firestore-transaktion.
-
-        Vi läser dagens bokningar och
-        kontrollerar överlappning innan
-        den nya bokningen skrivs.
-
-        Det minskar risken att två personer
-        bokar samma tid samtidigt.
-        */
 
         const bookingsRef =
             collection(
@@ -1735,6 +1925,16 @@ async function() {
                 "bookings"
             );
 
+
+        /*
+        ==================================================
+        TRANSAKTION
+
+        Vi hämtar dagens bokningar och
+        kontrollerar överlappning innan
+        vi sparar den nya.
+        ==================================================
+        */
 
         await runTransaction(
             db,
@@ -1752,7 +1952,9 @@ async function() {
 
 
                 const snapshot =
-                    await transaction.get(q);
+                    await transaction.get(
+                        q
+                    );
 
 
                 for (
@@ -1771,16 +1973,20 @@ async function() {
 
 
                     const existingEnd =
-                        existingStart +
+                        existingStart
+                        +
                         Number(
                             existing.duration
                         ) * 60;
 
 
                     if (
-                        startMinutes <
-                        existingEnd &&
-                        endMinutes >
+                        startMinutes
+                        <
+                        existingEnd
+                        &&
+                        endMinutes
+                        >
                         existingStart
                     ) {
 
@@ -1793,14 +1999,14 @@ async function() {
                 }
 
 
-                const newDoc =
+                const newBooking =
                     doc(
                         bookingsRef
                     );
 
 
                 transaction.set(
-                    newDoc,
+                    newBooking,
                     {
 
                         date:
@@ -1812,11 +2018,11 @@ async function() {
                         duration:
                             duration,
 
-                        createdAt:
-                            new Date(),
-
                         uid:
-                            currentUser.uid
+                            currentUser.uid,
+
+                        createdAt:
+                            new Date()
 
                     }
                 );
@@ -1831,12 +2037,13 @@ async function() {
         );
 
 
-        updatePreview();
+    }
 
+    catch (error) {
 
-    } catch (error) {
-
-        console.error(error);
+        console.error(
+            error
+        );
 
 
         if (
@@ -1849,30 +2056,38 @@ async function() {
                 "error"
             );
 
-        } else {
+        }
+
+        else {
 
             showMessage(
-                "Kunde inte spara bokningen. Försök igen.",
+                "Kunde inte spara bokningen. Kontrollera Firebase-inställningarna.",
                 "error"
             );
 
         }
 
-    } finally {
+    }
+
+    finally {
 
         button.disabled =
             false;
+
 
         button.textContent =
             "🔥 Boka bastu";
 
     }
+
 };
 
 
-/* =====================================================
-   LYSSNA PÅ FIRESTORE
-===================================================== */
+/*
+==========================================================
+ FIRESTORE – REALTID
+==========================================================
+*/
 
 function listenForBookings() {
 
@@ -1883,19 +2098,27 @@ function listenForBookings() {
         );
 
 
+    /*
+    ======================================================
+    VIKTIGT:
+
+    Vi använder INTE orderBy("date") + orderBy("start").
+
+    Därmed slipper vi skapa ett sammansatt index.
+
+    Vi hämtar alla bokningar och sorterar dem
+    i JavaScript.
+    ======================================================
+    */
+
     const q =
         query(
-            bookingsRef,
-            orderBy(
-                "date"
-            ),
-            orderBy(
-                "start"
-            )
+            bookingsRef
         );
 
 
     onSnapshot(
+
         q,
 
         snapshot => {
@@ -1932,14 +2155,24 @@ function listenForBookings() {
                 "error"
             );
 
+
+            document.getElementById(
+                "statusInfo"
+            ).textContent =
+                "Kunde inte läsa bokningarna.";
+
         }
+
     );
+
 }
 
 
-/* =====================================================
-   STARTA ANONYM INLOGGNING
-===================================================== */
+/*
+==========================================================
+ ANONYM INLOGGNING
+==========================================================
+*/
 
 onAuthStateChanged(
     auth,
@@ -1950,6 +2183,7 @@ onAuthStateChanged(
             currentUser =
                 user;
 
+
             listenForBookings();
 
         }
@@ -1958,22 +2192,32 @@ onAuthStateChanged(
 );
 
 
-signInAnonymously(auth)
-    .catch(error => {
+signInAnonymously(
+    auth
+)
+.catch(
+    error => {
 
-        console.error(error);
+        console.error(
+            "Firebase Auth:",
+            error
+        );
+
 
         showMessage(
             "Kunde inte ansluta till Firebase.",
             "error"
         );
 
-    });
+    }
+);
 
 
-/* =====================================================
-   START
-===================================================== */
+/*
+==========================================================
+ START
+==========================================================
+*/
 
 document.getElementById(
     "date"
@@ -1991,10 +2235,7 @@ updatePreview();
 
 
 /*
-Uppdatera status var 15:e sekund.
-
-Firestore uppdaterar samtidigt
-bokningslistan i realtid.
+Uppdatera status automatiskt.
 */
 
 setInterval(
