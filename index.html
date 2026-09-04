@@ -5,604 +5,323 @@
 
 <meta name="viewport"
       content="width=device-width,
-      initial-scale=1,
-      maximum-scale=1,
-      viewport-fit=cover">
+               initial-scale=1,
+               maximum-scale=1,
+               viewport-fit=cover">
 
 <title>Boka bastun</title>
 
 <style>
-
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html {
-    min-height: 100%;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-    color: #fff;
-
-    background:
-        radial-gradient(
-            circle at 90% 0%,
-            #713d20 0%,
-            #3a1d10 35%,
-            #170d08 75%
-        );
-
-    padding:
-        calc(env(safe-area-inset-top) + 25px)
-        18px
-        calc(env(safe-area-inset-bottom) + 30px);
-}
-
-.app {
-    width: 100%;
-    max-width: 760px;
-    margin: 0 auto;
-}
-
-/* ---------------- HEADER ---------------- */
-
-.header {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-
-    margin: 10px 10px 28px;
-}
-
-.fire {
-    width: 84px;
-    height: 84px;
-
-    border-radius: 28px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 48px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,180,80,.25),
-            rgba(80,35,15,.3)
-        );
-
-    border: 1px solid rgba(255,180,90,.25);
-
-    box-shadow:
-        0 10px 35px rgba(0,0,0,.25),
-        inset 0 1px 0 rgba(255,255,255,.1);
-}
-
-.header h1 {
-    margin: 0;
-
-    font-size: 36px;
-    line-height: 1.05;
-
-    letter-spacing: -1.5px;
-}
-
-.header p {
-    margin: 8px 0 0;
-
-    font-size: 19px;
-
-    color: rgba(255,255,255,.65);
-}
-
-/* ---------------- CARDS ---------------- */
-
-.card {
-    background:
-        rgba(255,255,255,.07);
-
-    border:
-        1px solid rgba(255,255,255,.13);
-
-    border-radius: 32px;
-
-    padding: 28px;
-
-    margin-bottom: 22px;
-
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.2),
-        inset 0 1px 0 rgba(255,255,255,.05);
-}
-
-/* ---------------- STATUS ---------------- */
-
-.status-card {
-    position: relative;
-    overflow: hidden;
-
-    min-height: 225px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.status-card::after {
-    content: "";
-
-    position: absolute;
-
-    width: 240px;
-    height: 240px;
-
-    right: -90px;
-    top: -100px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(180,90,40,.16);
-
-    pointer-events: none;
-}
-
-.label {
-    font-size: 16px;
-    font-weight: 700;
-
-    letter-spacing: 3px;
-
-    color: rgba(255,255,255,.65);
-
-    margin-bottom: 12px;
-}
-
-.status-title {
-    font-size: 48px;
-    font-weight: 800;
-
-    letter-spacing: -2px;
-
-    margin: 0 0 8px;
-}
-
-.status-info {
-    font-size: 20px;
-
-    color: rgba(255,255,255,.68);
-}
-
-.status-badge {
-    position: absolute;
-
-    right: 28px;
-    top: 85px;
-
-    z-index: 2;
-
-    padding: 13px 20px;
-
-    border-radius: 999px;
-
-    font-size: 17px;
-    font-weight: 800;
-
-    letter-spacing: 2px;
-
-    border: 1px solid rgba(110,220,130,.3);
-
-    background:
-        rgba(100,190,100,.10);
-
-    color: #78dc94;
-}
-
-.status-badge.busy {
-    color: #ff9a85;
-
-    border-color:
-        rgba(255,110,90,.35);
-
-    background:
-        rgba(255,90,70,.10);
-}
-
-/* ---------------- QUICK BUTTONS ---------------- */
-
-.quick {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 5px;
-
-    padding: 6px;
-
-    margin-bottom: 22px;
-
-    border-radius: 30px;
-
-    background:
-        rgba(255,255,255,.07);
-
-    border:
-        1px solid rgba(255,255,255,.12);
-}
-
-.quick button {
-    border: 0;
-
-    background: transparent;
-
-    color: rgba(255,255,255,.7);
-
-    padding: 19px 5px;
-
-    border-radius: 25px;
-
-    font-size: 20px;
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-.quick button.active {
-    color: #fff;
-
-    background:
-        rgba(255,255,255,.09);
-}
-
-/* ---------------- FORM ---------------- */
-
-.section-title {
-    font-size: 16px;
-
-    font-weight: 700;
-
-    letter-spacing: 3px;
-
-    color:
-        rgba(255,255,255,.65);
-
-    margin-bottom: 14px;
-}
-
-.field {
-    margin-bottom: 25px;
-}
-
-input,
-select {
-
-    width: 100%;
-
-    height: 68px;
-
-    border-radius: 24px;
-
-    border:
-        1px solid rgba(255,255,255,.14);
-
-    background:
-        rgba(255,255,255,.07);
-
-    color: #fff;
-
-    font-size: 22px;
-
-    font-weight: 650;
-
-    padding: 0 24px;
-
-    outline: none;
-}
-
-input:focus,
-select:focus {
-    border-color:
-        rgba(255,170,80,.5);
-}
-
-select option {
-    color: #111;
-}
-
-/* ---------------- PREVIEW ---------------- */
-
-.preview {
-
-    margin-top: 5px;
-    margin-bottom: 26px;
-
-    padding: 23px;
-
-    border-radius: 28px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,150,60,.12),
-            rgba(255,100,40,.07)
-        );
-
-    border:
-        1px solid rgba(255,150,70,.25);
-}
-
-.preview-label {
-    font-size: 15px;
-
-    letter-spacing: 2px;
-
-    color:
-        rgba(255,255,255,.65);
-
-    font-weight: 700;
-
-    margin-bottom: 10px;
-}
-
-.preview-time {
-
-    font-size: 34px;
-
-    font-weight: 800;
-
-    letter-spacing: -1px;
-}
-
-.preview-date {
-
-    margin-top: 5px;
-
-    font-size: 17px;
-
-    color:
-        rgba(255,255,255,.62);
-}
-
-/* ---------------- BOOK BUTTON ---------------- */
-
-.book-button {
-
-    width: 100%;
-
-    min-height: 78px;
-
-    border: 0;
-
-    border-radius: 28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffad48,
-            #ff613c
-        );
-
-    color: #140904;
-
-    font-size: 27px;
-
-    font-weight: 850;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 15px 35px rgba(255,100,40,.20);
-
-    transition:
-        transform .15s ease,
-        opacity .15s ease;
-}
-
-.book-button:active {
-    transform: scale(.98);
-}
-
-.book-button:disabled {
-    opacity: .45;
-    cursor: default;
-}
-
-/* ---------------- MESSAGE ---------------- */
-
-.message {
-
-    display: none;
-
-    padding: 20px;
-
-    margin-bottom: 22px;
-
-    border-radius: 24px;
-
-    font-size: 18px;
-
-    font-weight: 650;
-
-    line-height: 1.4;
-}
-
-.message.error {
-
-    display: block;
-
-    color: #ffaaa0;
-
-    background:
-        rgba(150,40,30,.20);
-
-    border:
-        1px solid rgba(255,90,70,.30);
-}
-
-.message.success {
-
-    display: block;
-
-    color: #9be7aa;
-
-    background:
-        rgba(40,130,60,.16);
-
-    border:
-        1px solid rgba(100,220,120,.25);
-}
-
-/* ---------------- BOOKINGS ---------------- */
-
-.booking-list {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 12px;
-}
-
-.booking {
-
-    padding: 20px;
-
-    border-radius: 24px;
-
-    background:
-        rgba(255,255,255,.055);
-
-    border:
-        1px solid rgba(255,255,255,.10);
-}
-
-.booking-date {
-
-    font-size: 14px;
-
-    letter-spacing: 2px;
-
-    font-weight: 750;
-
-    color:
-        rgba(255,255,255,.55);
-
-    margin-bottom: 6px;
-}
-
-.booking-time {
-
-    font-size: 27px;
-
-    font-weight: 800;
-}
-
-.booking-duration {
-
-    margin-top: 4px;
-
-    font-size: 16px;
-
-    color:
-        rgba(255,255,255,.55);
-}
-
-.empty {
-
-    text-align: center;
-
-    padding: 25px;
-
-    color:
-        rgba(255,255,255,.5);
-
-    font-size: 18px;
-}
-
-/* ---------------- FOOTER ---------------- */
-
-.footer {
-
-    text-align: center;
-
-    margin-top: 30px;
-
-    font-size: 13px;
-
-    color:
-        rgba(255,255,255,.35);
-}
-
-/* ---------------- MOBILE ---------------- */
-
-@media(max-width: 500px) {
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                     Roboto, Helvetica, Arial, sans-serif;
+        background: #f4f1eb;
+        color: #29251f;
+    }
 
     body {
-        padding-left: 14px;
-        padding-right: 14px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .app {
+        width: 100%;
+        max-width: 430px;
+        min-height: 100vh;
+        padding: 18px 16px 28px;
     }
 
     .header {
-        margin-left: 6px;
-        margin-right: 6px;
+        text-align: center;
+        margin-bottom: 16px;
     }
 
     .fire {
-        width: 74px;
-        height: 74px;
-        border-radius: 25px;
-        font-size: 42px;
+        font-size: 28px;
+        line-height: 1;
+        margin-bottom: 5px;
     }
 
-    .header h1 {
-        font-size: 31px;
+    h1 {
+        margin: 0;
+        font-size: 25px;
+        font-weight: 700;
+        letter-spacing: -0.4px;
     }
 
-    .header p {
-        font-size: 17px;
+    .subtitle {
+        margin-top: 4px;
+        font-size: 13px;
+        color: #777067;
     }
 
-    .card {
-        padding: 24px;
-        border-radius: 28px;
+    /* STATUS */
+
+    .status {
+        background: #fff;
+        border-radius: 16px;
+        padding: 13px 15px;
+        margin-bottom: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 1px 4px rgba(0,0,0,.07);
+    }
+
+    .status-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .status-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #56a45d;
+        flex: 0 0 auto;
+    }
+
+    .status-dot.busy {
+        background: #d46a45;
     }
 
     .status-title {
-        font-size: 43px;
+        font-size: 13px;
+        color: #777067;
+        margin-bottom: 1px;
     }
 
-    .status-badge {
-        right: 20px;
-        top: 76px;
+    .status-value {
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .status-time {
+        font-size: 12px;
+        color: #777067;
+        text-align: right;
+    }
+
+    /* QUICK BUTTONS */
+
+    .quick {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 13px;
+    }
+
+    .quick button {
+        border: 0;
+        background: #fff;
+        color: #38322b;
+        border-radius: 12px;
+        padding: 11px 5px;
         font-size: 14px;
-        padding: 11px 15px;
+        font-weight: 600;
+        box-shadow: 0 1px 4px rgba(0,0,0,.06);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
     }
 
-    .preview-time {
-        font-size: 31px;
+    .quick button:active {
+        transform: scale(.98);
+    }
+
+    .quick button.active {
+        background: #302b25;
+        color: #fff;
+    }
+
+    /* BOOKING FORM */
+
+    .card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 15px;
+        box-shadow: 0 1px 4px rgba(0,0,0,.07);
+        margin-bottom: 13px;
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 11px;
+        margin-bottom: 11px;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-size: 12px;
+        color: #777067;
+        margin: 0 0 5px 2px;
+    }
+
+    input,
+    select {
+        width: 100%;
+        height: 43px;
+        border: 1px solid #ddd7cf;
+        border-radius: 10px;
+        background: #faf9f7;
+        color: #29251f;
+        font-size: 16px;
+        padding: 0 10px;
+        outline: none;
+        font-family: inherit;
+    }
+
+    input:focus,
+    select:focus {
+        border-color: #aaa096;
+    }
+
+    .preview-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .7px;
+        color: #8a8178;
+        margin: 2px 0 4px;
+    }
+
+    .preview {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 12px;
     }
 
     .book-button {
-        font-size: 24px;
+        width: 100%;
+        height: 46px;
+        border: 0;
+        border-radius: 12px;
+        background: #302b25;
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
     }
-}
 
+    .book-button:active {
+        transform: scale(.99);
+    }
+
+    .book-button:disabled {
+        opacity: .5;
+        cursor: default;
+    }
+
+    /* CURRENT BOOKING */
+
+    .bookings-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 15px;
+        box-shadow: 0 1px 4px rgba(0,0,0,.07);
+    }
+
+    .section-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .7px;
+        color: #8a8178;
+        margin-bottom: 9px;
+    }
+
+    .booking {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-top: 1px solid #eee9e3;
+    }
+
+    .booking:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+    }
+
+    .booking-date {
+        font-size: 11px;
+        color: #8a8178;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+    }
+
+    .booking-time {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .booking-duration {
+        font-size: 12px;
+        color: #777067;
+        margin-top: 2px;
+    }
+
+    .booking-state {
+        font-size: 11px;
+        font-weight: 600;
+        color: #56a45d;
+        white-space: nowrap;
+    }
+
+    .empty {
+        font-size: 13px;
+        color: #8a8178;
+        padding: 2px 0;
+    }
+
+    .message {
+        margin-top: 10px;
+        font-size: 13px;
+        text-align: center;
+        min-height: 18px;
+    }
+
+    .message.error {
+        color: #b54835;
+    }
+
+    .message.ok {
+        color: #4d8f53;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 16px;
+        font-size: 10px;
+        color: #aaa198;
+    }
+
+    @media (max-width: 350px) {
+        .app {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        h1 {
+            font-size: 23px;
+        }
+
+        .row {
+            gap: 8px;
+        }
+    }
 </style>
 </head>
 
@@ -610,202 +329,107 @@ select option {
 
 <div class="app">
 
-    <!-- HEADER -->
-
-    <header class="header">
-
-        <div class="fire">
-            🔥
-        </div>
-
-        <div>
-            <h1>Boka bastun</h1>
-            <p>Lugn värme. Enkelt bokat.</p>
-        </div>
-
-    </header>
+    <div class="header">
+        <div class="fire">🔥</div>
+        <h1>Boka bastun</h1>
+        <div class="subtitle">Glöm inte att göra fint efter Er</div>
+    </div>
 
 
     <!-- STATUS -->
 
-    <section class="card status-card">
+    <div class="status">
 
-        <div class="label">
-            STATUS JUST NU
+        <div class="status-left">
+            <div id="statusDot" class="status-dot"></div>
+
+            <div>
+                <div class="status-title">Status</div>
+                <div id="statusValue" class="status-value">Ledig</div>
+            </div>
         </div>
 
-        <div
-            id="statusTitle"
-            class="status-title">
-            Hämtar...
-        </div>
+        <div id="statusTime" class="status-time"></div>
 
-        <div
-            id="statusBadge"
-            class="status-badge">
-            ...
-        </div>
-
-        <div
-            id="statusInfo"
-            class="status-info">
-            Hämtar bokningar...
-        </div>
-
-    </section>
-
-
-    <!-- MESSAGE -->
-
-    <div
-        id="message"
-        class="message">
     </div>
 
 
-    <!-- QUICK -->
+    <!-- SNABBVAL -->
 
     <div class="quick">
 
-        <button
-            id="quickNow"
-            onclick="setTodayTime()">
-            Nu
-        </button>
+        <button id="nowButton">Nu</button>
 
-        <button
-            id="quickToday"
-            onclick="setToday()">
-            Idag
-        </button>
+        <button id="todayButton">Idag</button>
 
-        <button
-            id="quickTomorrow"
-            onclick="setTomorrow()">
-            Imorgon
-        </button>
+        <button id="tomorrowButton">Imorgon</button>
 
     </div>
 
 
-    <!-- FORM -->
+    <!-- BOKNING -->
 
-    <section class="card">
+    <div class="card">
 
-        <div class="section-title">
-            DATUM
-        </div>
+        <div class="row">
 
-        <div class="field">
+            <div class="field">
+                <label for="date">Datum</label>
+                <input id="date" type="date">
+            </div>
 
-            <input
-                id="dateInput"
-                type="date">
-
-        </div>
-
-
-        <div class="section-title">
-            TID
-        </div>
-
-        <div class="field">
-
-            <input
-                id="timeInput"
-                type="time">
+            <div class="field">
+                <label for="time">Start</label>
+                <input id="time" type="time">
+            </div>
 
         </div>
 
 
-        <div class="section-title">
-            LÄNGD
-        </div>
+        <div class="field" style="margin-bottom:12px;">
+            <label for="duration">Längd</label>
 
-        <div class="field">
-
-            <select id="durationInput">
-
-                <option value="1">
-                    1 timme
-                </option>
-
-                <option value="2">
-                    2 timmar
-                </option>
-
-                <option value="3"
-                        selected>
-                    3 timmar
-                </option>
-
+            <select id="duration">
+                <option value="1">1 timme</option>
+                <option value="2">2 timmar</option>
+                <option value="3" selected>3 timmar</option>
             </select>
-
         </div>
 
 
-        <!-- PREVIEW -->
+        <div class="preview-title">DIN BOKNING</div>
 
-        <div class="preview">
-
-            <div class="preview-label">
-                DIN BOKNING
-            </div>
-
-            <div
-                id="previewTime"
-                class="preview-time">
-                --
-            </div>
-
-            <div
-                id="previewDate"
-                class="preview-date">
-                --
-            </div>
-
+        <div id="preview" class="preview">
+            -
         </div>
 
 
-        <button
-            id="bookButton"
-            class="book-button"
-            onclick="bookSauna()">
-
-            🔥 Boka bastu
-
+        <button id="bookButton" class="book-button">
+            Boka bastu
         </button>
 
-    </section>
+        <div id="message" class="message"></div>
+
+    </div>
 
 
-    <!-- UPCOMING -->
+    <!-- BOKNINGAR -->
 
-    <section class="card">
+    <div class="bookings-card">
 
         <div class="section-title">
-            KOMMANDE BOKNINGAR
+            AKTUELLA BOKNINGAR
         </div>
 
-        <div
-            id="bookingCount"
-            style="
-                color:rgba(255,255,255,.5);
-                margin-bottom:15px;
-            ">
-            Hämtar...
+        <div id="bookingsList">
+            <div class="empty">Laddar...</div>
         </div>
 
-        <div
-            id="bookingList"
-            class="booking-list">
-        </div>
-
-    </section>
+    </div>
 
 
     <div class="footer">
-        Boka bastun · Firebase
+        Boka bastun
     </div>
 
 </div>
@@ -821,503 +445,377 @@ import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-
-import {
-    getFirestore,
-    collection,
-    query,
-    onSnapshot,
-    runTransaction,
-    doc,
-    deleteDoc,
-    Timestamp
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
-
 import {
     getAuth,
     signInAnonymously,
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    deleteDoc,
+    doc,
+    query,
+    orderBy,
+    onSnapshot,
+    Timestamp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyDLcidVFvfuuoVNNzv9PAFQl6-qI6vHXW0",
-
-    authDomain:
-        "boka-bastu.firebaseapp.com",
-
-    projectId:
-        "boka-bastu",
-
-    storageBucket:
-        "boka-bastu.firebasestorage.app",
-
-    messagingSenderId:
-        "605683023531",
-
-    appId:
-        "1:605683023531:web:92edea0e3765726e4d41ee"
+    apiKey: "AIzaSyDLcidVFvfuuoVNNzv9PAFQl6-qI6vHXW0",
+    authDomain: "boka-bastu.firebaseapp.com",
+    projectId: "boka-bastu",
+    storageBucket: "boka-bastu.firebasestorage.app",
+    messagingSenderId: "605683023531",
+    appId: "1:605683023531:web:92edea0e3765726e4d41ee"
 };
 
 
-const app =
-    initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const bookingsRef = collection(db, "bookings");
 
 
-const db =
-    getFirestore(app);
+/* =========================================================
+   ELEMENT
+   ========================================================= */
+
+const dateInput = document.getElementById("date");
+const timeInput = document.getElementById("time");
+const durationInput = document.getElementById("duration");
+
+const preview = document.getElementById("preview");
+
+const bookButton = document.getElementById("bookButton");
+
+const message = document.getElementById("message");
+
+const bookingsList = document.getElementById("bookingsList");
+
+const statusValue = document.getElementById("statusValue");
+const statusTime = document.getElementById("statusTime");
+const statusDot = document.getElementById("statusDot");
+
+const nowButton = document.getElementById("nowButton");
+const todayButton = document.getElementById("todayButton");
+const tomorrowButton = document.getElementById("tomorrowButton");
 
 
-const auth =
-    getAuth(app);
-
-
-const bookingsRef =
-    collection(db, "bookings");
-
-
-let bookings = [];
+/* =========================================================
+   DATA
+   ========================================================= */
 
 let currentUser = null;
 
+let bookings = [];
+
+let unsubscribeBookings = null;
+
 
 /* =========================================================
-   HELPERS
+   DATUM / TID
    ========================================================= */
 
 function pad(number) {
-
     return String(number).padStart(2, "0");
-
 }
 
 
-function dateString(date) {
+function localDateString(date = new Date()) {
 
     return (
-        date.getFullYear()
-        + "-"
-        + pad(date.getMonth() + 1)
-        + "-"
-        + pad(date.getDate())
+        date.getFullYear() +
+        "-" +
+        pad(date.getMonth() + 1) +
+        "-" +
+        pad(date.getDate())
     );
-
 }
 
 
-function timeString(date) {
+function localTimeString(date = new Date()) {
 
     return (
-        pad(date.getHours())
-        + ":"
-        + pad(date.getMinutes())
+        pad(date.getHours()) +
+        ":" +
+        pad(date.getMinutes())
     );
-
 }
 
 
-function timeToMinutes(time) {
+function roundUp15Minutes(date) {
 
-    const parts =
-        time.split(":").map(Number);
+    const d = new Date(date);
 
-    return parts[0] * 60 + parts[1];
+    d.setSeconds(0, 0);
 
+    const minutes = d.getMinutes();
+
+    const rounded = Math.ceil(minutes / 15) * 15;
+
+    if (rounded >= 60) {
+        d.setHours(d.getHours() + 1);
+        d.setMinutes(0);
+    } else {
+        d.setMinutes(rounded);
+    }
+
+    return d;
 }
 
 
-function minutesToTime(minutes) {
+function dateTimeFromBooking(booking) {
 
-    minutes =
-        ((minutes % 1440) + 1440) % 1440;
-
-    const h =
-        Math.floor(minutes / 60);
-
-    const m =
-        minutes % 60;
-
-    return pad(h) + ":" + pad(m);
-
-}
-
-
-function makeEndTime(date, start, duration) {
-
-    const d =
-        new Date(
-            date + "T" + start + ":00"
-        );
-
-    d.setMinutes(
-        d.getMinutes()
-        + Number(duration) * 60
+    return new Date(
+        `${booking.date}T${booking.start}:00`
     );
-
-    return timeString(d);
-
 }
 
 
-function bookingEndDateTime(booking) {
+function endDateTimeFromBooking(booking) {
 
-    const start =
-        new Date(
-            booking.date
-            + "T"
-            + booking.start
-            + ":00"
-        );
+    const start = dateTimeFromBooking(booking);
 
-    start.setHours(
-        start.getHours()
-        + Number(booking.duration)
+    return new Date(
+        start.getTime() +
+        Number(booking.duration) * 60 * 60 * 1000
     );
-
-    return start;
-
 }
 
 
-function formatDate(dateStringValue) {
+function formatDate(dateString) {
 
-    const d =
-        new Date(
-            dateStringValue + "T12:00:00"
-        );
+    const date = new Date(dateString + "T12:00:00");
 
-    return d.toLocaleDateString(
-        "sv-SE",
-        {
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-        }
+    const months = [
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAJ",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OKT",
+        "NOV",
+        "DEC"
+    ];
+
+    return (
+        date.getDate() +
+        " " +
+        months[date.getMonth()]
     );
-
 }
 
 
 /* =========================================================
-   MESSAGE
+   FORMULÄR
    ========================================================= */
 
-function showMessage(text, type) {
+function setToday() {
 
-    const box =
-        document.getElementById("message");
+    const now = new Date();
 
-    box.textContent = text;
+    dateInput.value = localDateString(now);
 
-    box.className =
-        "message " + type;
+    updateQuickButtons("today");
 
+    updatePreview();
 }
 
 
-function hideMessage() {
+function setTomorrow() {
 
-    const box =
-        document.getElementById("message");
+    const tomorrow = new Date();
 
-    box.textContent = "";
+    tomorrow.setDate(tomorrow.getDate() + 1);
 
-    box.className =
-        "message";
+    dateInput.value = localDateString(tomorrow);
 
+    updateQuickButtons("tomorrow");
+
+    updatePreview();
+}
+
+
+function setNow() {
+
+    const now = roundUp15Minutes(new Date());
+
+    dateInput.value = localDateString(now);
+
+    timeInput.value = localTimeString(now);
+
+    updateQuickButtons("now");
+
+    updatePreview();
+}
+
+
+function updateQuickButtons(active) {
+
+    nowButton.classList.toggle(
+        "active",
+        active === "now"
+    );
+
+    todayButton.classList.toggle(
+        "active",
+        active === "today"
+    );
+
+    tomorrowButton.classList.toggle(
+        "active",
+        active === "tomorrow"
+    );
 }
 
 
 /* =========================================================
-   FORM
+   FÖRHANDSVISNING
    ========================================================= */
 
 function updatePreview() {
 
-    const date =
-        document.getElementById(
-            "dateInput"
-        ).value;
+    if (!dateInput.value || !timeInput.value) {
 
-    const start =
-        document.getElementById(
-            "timeInput"
-        ).value;
-
-    const duration =
-        Number(
-            document.getElementById(
-                "durationInput"
-            ).value
-        );
-
-
-    if (!date || !start) {
-
-        document.getElementById(
-            "previewTime"
-        ).textContent = "--";
-
-        document.getElementById(
-            "previewDate"
-        ).textContent = "--";
+        preview.textContent = "-";
 
         return;
     }
 
+    const duration =
+        Number(durationInput.value);
 
-    const end =
-        makeEndTime(
-            date,
-            start,
-            duration
+    const start =
+        new Date(
+            `${dateInput.value}T${timeInput.value}:00`
         );
 
+    const end =
+        new Date(
+            start.getTime() +
+            duration * 60 * 60 * 1000
+        );
 
-    document.getElementById(
-        "previewTime"
-    ).textContent =
-        start + " → " + end;
-
-
-    document.getElementById(
-        "previewDate"
-    ).textContent =
-        formatDate(date);
-
+    preview.textContent =
+        `${formatDate(dateInput.value)}  ` +
+        `${pad(start.getHours())}:${pad(start.getMinutes())}` +
+        ` → ` +
+        `${pad(end.getHours())}:${pad(end.getMinutes())}`;
 }
 
 
-document
-    .getElementById("dateInput")
-    .addEventListener(
-        "change",
-        updatePreview
-    );
+/* =========================================================
+   MEDDELANDE
+   ========================================================= */
 
+function showMessage(text, type = "") {
 
-document
-    .getElementById("timeInput")
-    .addEventListener(
-        "change",
-        updatePreview
-    );
+    message.textContent = text;
 
+    message.className =
+        "message " + type;
 
-document
-    .getElementById("durationInput")
-    .addEventListener(
-        "change",
-        updatePreview
-    );
+    if (text) {
+
+        setTimeout(() => {
+
+            if (message.textContent === text) {
+
+                message.textContent = "";
+
+                message.className = "message";
+
+            }
+
+        }, 4000);
+    }
+}
 
 
 /* =========================================================
-   QUICK BUTTONS
+   ÖVERLAPPANDE BOKNING
    ========================================================= */
 
-window.setToday = function() {
+function bookingsOverlap(
+    newStart,
+    newEnd,
+    existingBooking
+) {
 
-    const now = new Date();
+    const existingStart =
+        dateTimeFromBooking(existingBooking);
 
-    document.getElementById(
-        "dateInput"
-    ).value =
-        dateString(now);
+    const existingEnd =
+        endDateTimeFromBooking(existingBooking);
 
-    updatePreview();
-
-};
-
-
-window.setTodayTime = function() {
-
-    const now = new Date();
-
-    document.getElementById(
-        "dateInput"
-    ).value =
-        dateString(now);
+    return (
+        newStart < existingEnd &&
+        newEnd > existingStart
+    );
+}
 
 
-    let minutes =
-        now.getHours() * 60
-        + now.getMinutes();
+/* =========================================================
+   RADERA GAMLA BOKNINGAR
+   ========================================================= */
 
+async function removeExpiredBookings() {
 
-    /*
-       Runda upp till närmaste
-       15 minuter.
-    */
-
-    minutes =
-        Math.ceil(minutes / 15) * 15;
-
-
-    if (minutes >= 1440) {
-        minutes = 0;
+    if (!currentUser) {
+        return;
     }
 
-
-    document.getElementById(
-        "timeInput"
-    ).value =
-        minutesToTime(minutes);
-
-
-    updatePreview();
-
-};
-
-
-window.setTomorrow = function() {
-
     const now = new Date();
 
-    now.setDate(
-        now.getDate() + 1
-    );
+    const expiredBookings =
+        bookings.filter(booking => {
 
-    document.getElementById(
-        "dateInput"
-    ).value =
-        dateString(now);
+            const end =
+                endDateTimeFromBooking(booking);
 
-
-    document.getElementById(
-        "timeInput"
-    ).value =
-        "18:00";
+            return end <= now;
+        });
 
 
-    updatePreview();
-
-};
-
-
-/* =========================================================
-   RENDER BOOKINGS
-   ========================================================= */
-
-function renderBookings() {
-
-    const now =
-        new Date();
-
-
-    /*
-       Visa endast framtida
-       eller pågående bokningar.
-    */
-
-    const active =
-        bookings
-            .filter(
-                booking =>
-                    bookingEndDateTime(
-                        booking
-                    ) > now
-            )
-            .sort(
-                (a, b) => {
-
-                    const da =
-                        new Date(
-                            a.date
-                            + "T"
-                            + a.start
-                            + ":00"
-                        );
-
-                    const dbb =
-                        new Date(
-                            b.date
-                            + "T"
-                            + b.start
-                            + ":00"
-                        );
-
-                    return da - dbb;
-
-                }
-            );
-
-
-    document.getElementById(
-        "bookingCount"
-    ).textContent =
-        active.length
-        + (
-            active.length === 1
-                ? " bokning"
-                : " bokningar"
-        );
-
-
-    const list =
-        document.getElementById(
-            "bookingList"
-        );
-
-
-    if (!active.length) {
-
-        list.innerHTML =
-            `<div class="empty">
-                Inga kommande bokningar
-             </div>`;
-
+    if (expiredBookings.length === 0) {
         return;
     }
 
 
-    list.innerHTML =
-        active
-            .map(
-                booking => {
+    for (const booking of expiredBookings) {
 
-                    const end =
-                        makeEndTime(
-                            booking.date,
-                            booking.start,
-                            booking.duration
-                        );
+        try {
 
+            await deleteDoc(
+                doc(db, "bookings", booking.id)
+            );
 
-                    return `
-                        <div class="booking">
+        } catch (error) {
 
-                            <div class="booking-date">
-                                ${formatDate(booking.date)}
-                            </div>
+            /*
+             * Om säkerhetsregeln stoppar en gammal
+             * bokning utan expiresAt ignoreras felet.
+             * Den kan då tas bort manuellt i Firebase.
+             */
 
-                            <div class="booking-time">
-                                ${booking.start}
-                                →
-                                ${end}
-                            </div>
-
-                            <div class="booking-duration">
-                                ${booking.duration}
-                                ${
-                                    Number(
-                                        booking.duration
-                                    ) === 1
-                                    ? "timme"
-                                    : "timmar"
-                                }
-                            </div>
-
-                        </div>
-                    `;
-
-                }
-            )
-            .join("");
-
+            console.log(
+                "Kunde inte radera gammal bokning:",
+                error
+            );
+        }
+    }
 }
 
 
@@ -1327,297 +825,216 @@ function renderBookings() {
 
 function updateStatus() {
 
-    const now =
-        new Date();
+    const now = new Date();
 
-    const today =
-        dateString(now);
+    const currentBooking =
+        bookings.find(booking => {
 
-    const nowMinutes =
-        now.getHours() * 60
-        + now.getMinutes()
-        + now.getSeconds() / 60;
+            const start =
+                dateTimeFromBooking(booking);
 
+            const end =
+                endDateTimeFromBooking(booking);
 
-    const current =
-        bookings.find(
-            booking => {
-
-                if (
-                    booking.date
-                    !== today
-                ) {
-                    return false;
-                }
+            return (
+                now >= start &&
+                now < end
+            );
+        });
 
 
-                const start =
-                    timeToMinutes(
-                        booking.start
-                    );
+    if (currentBooking) {
 
+        statusValue.textContent = "Bokad";
 
-                const end =
-                    start
-                    + Number(
-                        booking.duration
-                    ) * 60;
-
-
-                return (
-                    nowMinutes >= start
-                    &&
-                    nowMinutes < end
-                );
-
-            }
-        );
-
-
-    const title =
-        document.getElementById(
-            "statusTitle"
-        );
-
-
-    const info =
-        document.getElementById(
-            "statusInfo"
-        );
-
-
-    const badge =
-        document.getElementById(
-            "statusBadge"
-        );
-
-
-    if (current) {
+        statusDot.classList.add("busy");
 
         const end =
-            makeEndTime(
-                current.date,
-                current.start,
-                current.duration
-            );
+            endDateTimeFromBooking(currentBooking);
 
+        statusTime.textContent =
+            "Till " +
+            pad(end.getHours()) +
+            ":" +
+            pad(end.getMinutes());
 
-        title.textContent =
-            "Bastun är bokad";
+    } else {
 
+        statusValue.textContent = "Ledig";
 
-        badge.textContent =
-            "BOKAD";
+        statusDot.classList.remove("busy");
 
-
-        badge.classList.add(
-            "busy"
-        );
-
-
-        info.textContent =
-            "Bokad till " + end + ".";
-
+        statusTime.textContent = "";
     }
-
-    else {
-
-        title.textContent =
-            "Ledig";
-
-
-        badge.textContent =
-            "LEDIG";
-
-
-        badge.classList.remove(
-            "busy"
-        );
-
-
-        /*
-           Hitta nästa bokning
-        */
-
-        const future =
-            bookings
-                .filter(
-                    b =>
-                        bookingEndDateTime(b)
-                        > now
-                )
-                .sort(
-                    (a, b) =>
-                        bookingEndDateTime(a)
-                        -
-                        bookingEndDateTime(b)
-                );
-
-
-        if (future.length) {
-
-            info.textContent =
-                "Nästa bokning "
-                + future[0].date
-                + " kl. "
-                + future[0].start
-                + ".";
-
-        }
-
-        else {
-
-            info.textContent =
-                "Bastun är ledig.";
-
-        }
-
-    }
-
 }
 
 
 /* =========================================================
-   DELETE EXPIRED BOOKINGS
+   VISA BOKNINGAR
    ========================================================= */
 
-async function cleanupExpiredBookings() {
+function renderBookings() {
 
-    if (!currentUser) {
+    const now = new Date();
+
+    const activeBookings =
+        bookings
+            .filter(booking => {
+
+                return (
+                    endDateTimeFromBooking(booking) >
+                    now
+                );
+            })
+            .sort((a, b) => {
+
+                return (
+                    dateTimeFromBooking(a) -
+                    dateTimeFromBooking(b)
+                );
+            });
+
+
+    if (activeBookings.length === 0) {
+
+        bookingsList.innerHTML =
+            '<div class="empty">Inga aktuella bokningar</div>';
+
         return;
     }
 
 
-    const now =
-        new Date();
+    bookingsList.innerHTML =
+        activeBookings.map(booking => {
+
+            const start =
+                dateTimeFromBooking(booking);
+
+            const end =
+                endDateTimeFromBooking(booking);
+
+            const isCurrent =
+                now >= start &&
+                now < end;
 
 
-    /*
-       Ta bort bokningar vars sluttid
-       redan har passerat.
-    */
+            return `
+                <div class="booking">
 
-    const expired =
-        bookings.filter(
-            booking =>
-                bookingEndDateTime(
-                    booking
-                ) <= now
+                    <div>
+
+                        <div class="booking-date">
+                            ${formatDate(booking.date)}
+                        </div>
+
+                        <div class="booking-time">
+                            ${pad(start.getHours())}:${pad(start.getMinutes())}
+                            →
+                            ${pad(end.getHours())}:${pad(end.getMinutes())}
+                        </div>
+
+                        <div class="booking-duration">
+                            ${booking.duration} ${Number(booking.duration) === 1 ? "timme" : "timmar"}
+                        </div>
+
+                    </div>
+
+                    <div class="booking-state">
+                        ${isCurrent ? "PÅGÅR" : "BOKAD"}
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+}
+
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
+function render() {
+
+    updateStatus();
+
+    renderBookings();
+
+    updatePreview();
+}
+
+
+/* =========================================================
+   LIVE FIRESTORE
+   ========================================================= */
+
+function startRealtimeListener() {
+
+    if (unsubscribeBookings) {
+
+        unsubscribeBookings();
+
+        unsubscribeBookings = null;
+    }
+
+
+    const bookingsQuery =
+        query(
+            bookingsRef,
+            orderBy("date"),
+            orderBy("start")
         );
 
 
-    for (const booking of expired) {
+    unsubscribeBookings =
+        onSnapshot(
+            bookingsQuery,
 
-        try {
+            snapshot => {
 
-            await deleteDoc(
-                doc(
-                    db,
-                    "bookings",
-                    booking.id
-                )
-            );
+                bookings =
+                    snapshot.docs.map(item => {
 
-        }
+                        return {
+                            id: item.id,
+                            ...item.data()
+                        };
 
-        catch (error) {
-
-            /*
-               Cloud Function är
-               säkerhetsnät om klienten
-               inte får radera.
-            */
-
-            console.warn(
-                "Kunde inte radera gammal bokning:",
-                error
-            );
-
-        }
-
-    }
-
-}
+                    });
 
 
-/* =========================================================
-   REALTIME FIRESTORE
-   ========================================================= */
+                render();
 
-function listenForBookings() {
+                removeExpiredBookings();
 
-    const q =
-        query(bookingsRef);
+            },
 
+            error => {
 
-    onSnapshot(
-
-        q,
-
-        async snapshot => {
-
-            bookings =
-                snapshot.docs.map(
-                    docSnap => ({
-
-                        id:
-                            docSnap.id,
-
-                        ...docSnap.data()
-
-                    })
+                console.error(
+                    "Firestore listener:",
+                    error
                 );
 
-
-            renderBookings();
-
-            updateStatus();
-
-            await cleanupExpiredBookings();
-
-        },
-
-
-        error => {
-
-            console.error(
-                "Firestore read error:",
-                error
-            );
-
-
-            showMessage(
-                "Kunde inte läsa bokningarna: "
-                + error.message,
-                "error"
-            );
-
-
-            document.getElementById(
-                "statusInfo"
-            ).textContent =
-                "Kunde inte läsa Firebase.";
-
-        }
-
-    );
-
+                showMessage(
+                    "Kunde inte läsa bokningarna.",
+                    "error"
+                );
+            }
+        );
 }
 
 
 /* =========================================================
-   BOOK
+   SKAPA BOKNING
    ========================================================= */
 
-window.bookSauna = async function() {
-
-    hideMessage();
-
+async function createBooking() {
 
     if (!currentUser) {
 
         showMessage(
-            "Firebase-inloggningen är inte klar ännu. Försök igen om en sekund.",
+            "Ansluter till Firebase...",
             "error"
         );
 
@@ -1625,70 +1042,41 @@ window.bookSauna = async function() {
     }
 
 
-    const button =
-        document.getElementById(
-            "bookButton"
+    if (!dateInput.value || !timeInput.value) {
+
+        showMessage(
+            "Välj datum och starttid.",
+            "error"
         );
 
-
-    const date =
-        document.getElementById(
-            "dateInput"
-        ).value;
-
-
-    const start =
-        document.getElementById(
-            "timeInput"
-        ).value;
+        return;
+    }
 
 
     const duration =
-        Number(
-            document.getElementById(
-                "durationInput"
-            ).value
-        );
+        Number(durationInput.value);
 
 
-    if (!date || !start) {
-
-        showMessage(
-            "Välj datum och tid.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const startDate =
+    const start =
         new Date(
-            date
-            + "T"
-            + start
-            + ":00"
+            `${dateInput.value}T${timeInput.value}:00`
         );
 
 
-    const endDate =
+    const end =
         new Date(
-            startDate
+            start.getTime() +
+            duration * 60 * 60 * 1000
         );
 
 
-    endDate.setHours(
-        endDate.getHours()
-        + duration
-    );
+    const now = new Date();
 
 
-    if (
-        startDate <= new Date()
-    ) {
+    if (end <= now) {
 
         showMessage(
-            "Bokningen måste börja i framtiden.",
+            "Bokningen har redan passerat.",
             "error"
         );
 
@@ -1696,13 +1084,34 @@ window.bookSauna = async function() {
     }
 
 
-    if (
-        endDate.getDate()
-        !== startDate.getDate()
-    ) {
+    /* Kontrollera gamla/utgångna bokningar först */
+
+    await removeExpiredBookings();
+
+
+    /* Kontrollera om tiden redan är bokad */
+
+    const conflict =
+        bookings.find(booking => {
+
+            return bookingsOverlap(
+                start,
+                end,
+                booking
+            );
+        });
+
+
+    if (conflict) {
+
+        const conflictStart =
+            dateTimeFromBooking(conflict);
+
+        const conflictEnd =
+            endDateTimeFromBooking(conflict);
 
         showMessage(
-            "Bokningen måste sluta samma dag.",
+            `Tiden är redan bokad ${pad(conflictStart.getHours())}:${pad(conflictStart.getMinutes())}–${pad(conflictEnd.getHours())}:${pad(conflictEnd.getMinutes())}.`,
             "error"
         );
 
@@ -1710,315 +1119,199 @@ window.bookSauna = async function() {
     }
 
 
-    button.disabled = true;
+    bookButton.disabled = true;
 
-    button.textContent =
-        "Sparar...";
+    bookButton.textContent = "Bokar...";
 
 
     try {
 
-        await runTransaction(
-            db,
-            async transaction => {
+        /*
+         * expiresAt används av Firestore-reglerna
+         * för att tillåta automatisk radering efter
+         * att bokningen är slut.
+         */
 
-                /*
-                   Hämta alla bokningar.
+        await addDoc(
+            bookingsRef,
+            {
+                date: dateInput.value,
 
-                   Vi gör kontrollen i transaktionen
-                   så samtidiga bokningar får
-                   konsekvent resultat.
-                */
+                start: timeInput.value,
 
-                const snapshot =
-                    await transaction.get(
-                        bookingsRef
-                    );
+                duration: duration,
 
+                uid: currentUser.uid,
 
-                const requestedStart =
-                    startDate.getTime();
+                createdAt: Timestamp.now(),
 
-
-                const requestedEnd =
-                    endDate.getTime();
-
-
-                for (
-                    const docSnap
-                    of snapshot.docs
-                ) {
-
-                    const existing =
-                        docSnap.data();
-
-
-                    /*
-                       Hoppa över gamla bokningar.
-                    */
-
-                    if (
-                        bookingEndDateTime(
-                            existing
-                        ) <= new Date()
-                    ) {
-
-                        transaction.delete(
-                            docSnap.ref
-                        );
-
-                        continue;
-                    }
-
-
-                    const existingStart =
-                        new Date(
-                            existing.date
-                            + "T"
-                            + existing.start
-                            + ":00"
-                        );
-
-
-                    const existingEnd =
-                        new Date(
-                            existingStart
-                        );
-
-
-                    existingEnd.setHours(
-                        existingEnd.getHours()
-                        + Number(
-                            existing.duration
-                        )
-                    );
-
-
-                    const conflict =
-                        requestedStart
-                        < existingEnd.getTime()
-                        &&
-                        requestedEnd
-                        > existingStart.getTime();
-
-
-                    if (conflict) {
-
-                        throw new Error(
-                            "CONFLICT"
-                        );
-
-                    }
-
-                }
-
-
-                const newBooking =
-                    doc(bookingsRef);
-
-
-                transaction.set(
-                    newBooking,
-                    {
-
-                        date:
-                            date,
-
-                        start:
-                            start,
-
-                        duration:
-                            duration,
-
-                        uid:
-                            currentUser.uid,
-
-                        expiresAt:
-                            Timestamp.fromDate(
-                                endDate
-                            ),
-
-                        createdAt:
-                            Timestamp.fromDate(
-                                new Date()
-                            )
-
-                    }
-                );
-
+                expiresAt: Timestamp.fromDate(end)
             }
         );
 
 
         showMessage(
-            "Bokningen är sparad!",
-            "success"
+            "Bastun är bokad!",
+            "ok"
         );
 
 
-    }
+        /*
+         * Lyssnaren uppdaterar automatiskt
+         * listan på alla anslutna telefoner.
+         */
 
-    catch (error) {
+        render();
+
+
+    } catch (error) {
 
         console.error(
-            "Firestore write error:",
+            "Kunde inte spara bokningen:",
             error
         );
 
 
-        if (
-            error.message
-            === "CONFLICT"
-        ) {
+        showMessage(
+            "Kunde inte spara bokningen: " +
+            (error.message || error),
+            "error"
+        );
 
-            showMessage(
-                "Den tiden är redan bokad. Välj en annan tid.",
-                "error"
-            );
+    } finally {
 
-        }
+        bookButton.disabled = false;
 
-        else {
-
-            showMessage(
-                "Kunde inte spara bokningen: "
-                + error.message,
-                "error"
-            );
-
-        }
-
+        bookButton.textContent = "Boka bastu";
     }
-
-
-    button.disabled = false;
-
-    button.textContent =
-        "🔥 Boka bastu";
-
-};
+}
 
 
 /* =========================================================
-   AUTHENTICATION
+   KNAPPAR
    ========================================================= */
 
-onAuthStateChanged(
-    auth,
-    user => {
+nowButton.addEventListener(
+    "click",
+    setNow
+);
 
-        if (user) {
 
-            currentUser =
-                user;
+todayButton.addEventListener(
+    "click",
+    setToday
+);
 
-            console.log(
-                "Firebase user:",
-                user.uid
-            );
 
-            listenForBookings();
+tomorrowButton.addEventListener(
+    "click",
+    setTomorrow
+);
 
-        }
 
+dateInput.addEventListener(
+    "change",
+    () => {
+
+        updateQuickButtons("");
+
+        updatePreview();
     }
 );
 
 
-try {
-
-    await signInAnonymously(auth);
-
-}
-
-catch (error) {
-
-    console.error(
-        "Anonymous authentication error:",
-        error
-    );
+timeInput.addEventListener(
+    "change",
+    updatePreview
+);
 
 
-    showMessage(
-        "Kunde inte logga in mot Firebase: "
-        + error.message,
-        "error"
-    );
+durationInput.addEventListener(
+    "change",
+    updatePreview
+);
 
-}
+
+bookButton.addEventListener(
+    "click",
+    createBooking
+);
 
 
 /* =========================================================
    START
    ========================================================= */
 
-const now =
-    new Date();
+function initializeForm() {
 
+    const now =
+        roundUp15Minutes(new Date());
 
-document.getElementById(
-    "dateInput"
-).value =
-    dateString(now);
+    dateInput.value =
+        localDateString(now);
 
+    timeInput.value =
+        localTimeString(now);
 
-/*
-   Standardtid:
-   närmaste halvtimme,
-   dock minst 30 minuter framåt.
-*/
+    durationInput.value = "3";
 
-let initialMinutes =
-    now.getHours() * 60
-    + now.getMinutes()
-    + 30;
+    updateQuickButtons("now");
 
-
-initialMinutes =
-    Math.ceil(
-        initialMinutes / 30
-    ) * 30;
-
-
-if (initialMinutes >= 1440) {
-
-    initialMinutes =
-        23 * 60;
-
+    updatePreview();
 }
 
 
-document.getElementById(
-    "timeInput"
-).value =
-    minutesToTime(
-        initialMinutes
-    );
-
-
-updatePreview();
+initializeForm();
 
 
 /* =========================================================
-   LIVE CLOCK
+   FIREBASE AUTH
    ========================================================= */
 
-/*
-   Status och gamla bokningar kontrolleras
-   var 5:e sekund.
+signInAnonymously(auth)
+    .catch(error => {
 
-   Firestore onSnapshot gör själva
-   databassynkningen live.
-*/
+        console.error(
+            "Firebase inloggning:",
+            error
+        );
+
+        showMessage(
+            "Kunde inte ansluta till Firebase.",
+            "error"
+        );
+    });
+
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        currentUser = user;
+
+        if (user) {
+
+            startRealtimeListener();
+
+            render();
+
+        }
+    }
+);
+
+
+/* =========================================================
+   LIVE UPPDATERING
+   ========================================================= */
 
 setInterval(
-    async () => {
+    () => {
 
         updateStatus();
 
         renderBookings();
 
-        await cleanupExpiredBookings();
+        removeExpiredBookings();
 
     },
     5000
