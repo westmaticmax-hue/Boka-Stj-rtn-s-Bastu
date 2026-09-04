@@ -13,6 +13,10 @@
 
 <style>
 
+/* =====================================================
+   GRUND
+   ===================================================== */
+
 * {
     box-sizing: border-box;
 }
@@ -29,6 +33,7 @@ body {
         -apple-system,
         BlinkMacSystemFont,
         "SF Pro Display",
+        "SF Pro Text",
         "Segoe UI",
         Roboto,
         Helvetica,
@@ -38,7 +43,7 @@ body {
     background:
         linear-gradient(
             180deg,
-            #f7f2ea 0%,
+            #f8f3ec 0%,
             #eee5d9 100%
         );
 
@@ -60,12 +65,13 @@ button {
 .app {
     width: 100%;
     max-width: 440px;
+
     min-height: 100vh;
 
     margin: 0 auto;
 
     padding:
-        max(22px, env(safe-area-inset-top))
+        max(18px, env(safe-area-inset-top))
         16px
         calc(28px + env(safe-area-inset-bottom));
 }
@@ -77,13 +83,17 @@ button {
 
 .header {
     text-align: center;
-    padding: 4px 0 20px;
+
+    padding:
+        5px 0 18px;
 }
 
 .fire {
-    font-size: 42px;
+    font-size: 38px;
+
     line-height: 1;
-    margin-bottom: 8px;
+
+    margin-bottom: 7px;
 
     filter:
         drop-shadow(
@@ -95,103 +105,203 @@ h1 {
     margin: 0;
 
     font-size: 30px;
-    line-height: 1.05;
-    font-weight: 750;
 
-    letter-spacing: -0.8px;
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
 }
 
 .subtitle {
     margin-top: 7px;
 
     font-size: 15px;
+
     line-height: 1.3;
 
-    color: #81786f;
+    color: #827970;
 }
 
 
 /* =====================================================
-   STATUS
+   STATUSKORT
    ===================================================== */
 
 .status {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    position: relative;
 
-    min-height: 82px;
+    overflow: hidden;
 
-    padding: 16px 18px;
+    min-height: 112px;
+
+    padding: 18px 19px;
 
     margin-bottom: 12px;
 
+    border-radius: 22px;
+
     background:
-        rgba(255,255,255,.92);
+        rgba(255,255,255,.94);
 
     border:
-        1px solid rgba(255,255,255,.9);
-
-    border-radius: 20px;
+        1px solid rgba(255,255,255,.95);
 
     box-shadow:
-        0 4px 14px rgba(73,55,38,.08);
+        0 5px 18px rgba(72,55,40,.09);
 }
+
+
+/*
+ * Liten dekorativ varm cirkel.
+ */
+
+.status::after {
+    content: "";
+
+    position: absolute;
+
+    width: 155px;
+    height: 155px;
+
+    right: -70px;
+    top: -75px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(222,155,94,.10);
+
+    pointer-events: none;
+}
+
+
+.status-content {
+    position: relative;
+
+    z-index: 1;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
 
 .status-left {
     display: flex;
+
     align-items: center;
+
     gap: 13px;
 }
+
 
 .status-dot {
     width: 14px;
     height: 14px;
 
+    flex: 0 0 auto;
+
     border-radius: 50%;
 
-    background: #63a765;
+    background: #64a768;
 
     box-shadow:
-        0 0 0 5px rgba(99,167,101,.12);
+        0 0 0 5px rgba(100,167,104,.12);
 }
 
 .status-dot.busy {
-    background: #d16b48;
+    background: #d06b48;
 
     box-shadow:
-        0 0 0 5px rgba(209,107,72,.12);
+        0 0 0 5px rgba(208,107,72,.12);
 }
 
-.status-title {
-    font-size: 14px;
-    line-height: 1.1;
 
-    color: #827970;
+.status-label {
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    color: #8b8178;
 
     margin-bottom: 3px;
 }
 
+
 .status-value {
-    font-size: 22px;
+    font-size: 27px;
+
     line-height: 1;
 
-    font-weight: 750;
+    font-weight: 800;
 
-    letter-spacing: -0.3px;
+    letter-spacing: -0.7px;
 }
 
-.status-time {
-    font-size: 14px;
 
-    color: #766d65;
+/*
+ * Tiden får en egen tydlig yta.
+ */
 
-    text-align: right;
+.status-end {
+    position: relative;
+
+    z-index: 1;
+
+    min-width: 105px;
+
+    padding:
+        9px 12px;
+
+    border-radius: 14px;
+
+    background: #f7f3ee;
+
+    text-align: center;
+}
+
+
+.status-end-label {
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .8px;
+
+    text-transform: uppercase;
+
+    color: #8c8178;
+
+    margin-bottom: 2px;
+}
+
+
+.status-end-time {
+    font-size: 22px;
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -.4px;
+
+    color: #342e29;
 }
 
 
 /* =====================================================
-   QUICK BUTTONS
+   SNABBVAL
    ===================================================== */
 
 .quick {
@@ -206,27 +316,30 @@ h1 {
 }
 
 .quick button {
-    min-height: 51px;
+    min-height: 52px;
 
     border: 0;
 
-    border-radius: 15px;
+    border-radius: 16px;
 
-    background: rgba(255,255,255,.92);
+    background:
+        rgba(255,255,255,.94);
 
     color: #39332e;
 
     font-size: 16px;
-    font-weight: 700;
+
+    font-weight: 750;
 
     box-shadow:
-        0 3px 10px rgba(73,55,38,.07);
+        0 3px 11px rgba(72,55,40,.07);
 
     cursor: pointer;
 
     transition:
         transform .12s ease,
-        background .12s ease;
+        background .12s ease,
+        box-shadow .12s ease;
 }
 
 .quick button:active {
@@ -234,11 +347,12 @@ h1 {
 }
 
 .quick button.active {
-    background: #342e28;
+    background: #342e29;
+
     color: #fff;
 
     box-shadow:
-        0 4px 12px rgba(52,46,40,.18);
+        0 5px 13px rgba(52,46,41,.18);
 }
 
 
@@ -247,25 +361,25 @@ h1 {
    ===================================================== */
 
 .card {
-    background:
-        rgba(255,255,255,.96);
-
-    border:
-        1px solid rgba(255,255,255,.95);
-
-    border-radius: 20px;
-
     padding: 18px;
 
     margin-bottom: 12px;
 
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,.97);
+
+    border:
+        1px solid rgba(255,255,255,.95);
+
     box-shadow:
-        0 5px 18px rgba(73,55,38,.08);
+        0 5px 18px rgba(72,55,40,.09);
 }
 
 
 /* =====================================================
-   FÄLT
+   DATUM / START
    ===================================================== */
 
 .row {
@@ -279,31 +393,36 @@ h1 {
     margin-bottom: 13px;
 }
 
+
 .field {
     display: flex;
+
     flex-direction: column;
 }
 
+
 label {
     font-size: 14px;
-    font-weight: 600;
 
-    color: #756d65;
+    font-weight: 650;
+
+    color: #756c64;
 
     margin:
         0 0 6px 2px;
 }
 
+
 input,
 select {
     width: 100%;
 
-    height: 50px;
+    height: 51px;
 
     border:
-        1px solid #ded7cf;
+        1px solid #ddd6ce;
 
-    border-radius: 13px;
+    border-radius: 14px;
 
     background: #fbfaf8;
 
@@ -311,12 +430,14 @@ select {
 
     font-size: 17px;
 
-    padding: 0 12px;
+    padding:
+        0 12px;
 
     outline: none;
 
     appearance: auto;
 }
+
 
 input:focus,
 select:focus {
@@ -331,27 +452,48 @@ select:focus {
    DIN BOKNING
    ===================================================== */
 
+.preview-box {
+    margin-top: 17px;
+
+    margin-bottom: 15px;
+
+    padding:
+        12px 14px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8f3ed,
+            #f1e9df
+        );
+}
+
+
 .preview-title {
-    font-size: 12px;
+    font-size: 11px;
+
     font-weight: 800;
 
     letter-spacing: 1.2px;
 
-    color: #8a8077;
+    text-transform: uppercase;
 
-    margin-top: 18px;
+    color: #897f76;
+
     margin-bottom: 5px;
 }
 
+
 .preview {
     font-size: 25px;
+
     line-height: 1.15;
 
     font-weight: 800;
 
-    letter-spacing: -0.7px;
-
-    margin-bottom: 16px;
+    letter-spacing: -.7px;
 }
 
 
@@ -362,21 +504,24 @@ select:focus {
 .book-button {
     width: 100%;
 
-    min-height: 54px;
+    min-height: 56px;
 
     border: 0;
 
-    border-radius: 15px;
+    border-radius: 16px;
 
-    background: #342e28;
+    background: #342e29;
 
     color: #fff;
 
     font-size: 18px;
-    font-weight: 750;
+
+    font-weight: 800;
+
+    letter-spacing: -.2px;
 
     box-shadow:
-        0 5px 13px rgba(52,46,40,.18);
+        0 6px 15px rgba(52,46,41,.19);
 
     cursor: pointer;
 
@@ -401,11 +546,12 @@ select:focus {
 .message {
     min-height: 21px;
 
-    margin-top: 11px;
+    margin-top: 10px;
 
     text-align: center;
 
     font-size: 15px;
+
     line-height: 1.35;
 }
 
@@ -423,40 +569,65 @@ select:focus {
    ===================================================== */
 
 .bookings-card {
+    padding: 18px;
+
+    border-radius: 22px;
+
     background:
-        rgba(255,255,255,.96);
+        rgba(255,255,255,.97);
 
     border:
         1px solid rgba(255,255,255,.95);
 
-    border-radius: 20px;
-
-    padding: 18px;
-
     box-shadow:
-        0 5px 18px rgba(73,55,38,.08);
+        0 5px 18px rgba(72,55,40,.09);
 }
+
+
+.section-heading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+}
+
 
 .section-title {
     font-size: 12px;
+
     font-weight: 800;
 
     letter-spacing: 1.2px;
 
-    color: #8a8077;
+    text-transform: uppercase;
 
-    margin-bottom: 10px;
+    color: #8a8077;
 }
+
+
+.booking-count {
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #a0958b;
+}
+
 
 .booking {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 12px;
 
-    padding: 12px 0;
+    padding:
+        13px 0;
 
     border-top:
         1px solid #eee9e3;
@@ -465,26 +636,31 @@ select:focus {
 .booking:first-of-type {
     border-top: 0;
 
-    padding-top: 0;
+    padding-top: 2px;
 }
+
 
 .booking-date {
     font-size: 12px;
-    font-weight: 700;
+
+    font-weight: 750;
 
     color: #91877e;
 
     margin-bottom: 3px;
 }
 
+
 .booking-time {
     font-size: 20px;
+
     line-height: 1.1;
 
-    font-weight: 750;
+    font-weight: 800;
 
-    letter-spacing: -0.3px;
+    letter-spacing: -.35px;
 }
+
 
 .booking-duration {
     font-size: 14px;
@@ -494,16 +670,26 @@ select:focus {
     margin-top: 4px;
 }
 
+
 .booking-state {
     flex-shrink: 0;
 
-    font-size: 12px;
+    padding:
+        6px 9px;
+
+    border-radius: 10px;
+
+    background: #f0f7ef;
+
+    color: #5e9861;
+
+    font-size: 10px;
+
     font-weight: 800;
 
-    color: #62a064;
-
-    letter-spacing: .3px;
+    letter-spacing: .5px;
 }
+
 
 .empty {
     font-size: 15px;
@@ -525,7 +711,7 @@ select:focus {
 
     font-size: 11px;
 
-    color: #a79d94;
+    color: #aaa097;
 }
 
 
@@ -544,12 +730,25 @@ select:focus {
         font-size: 27px;
     }
 
-    .preview {
-        font-size: 22px;
+    .status {
+        padding: 16px;
+    }
+
+    .status-end {
+        min-width: 94px;
+        padding: 8px 9px;
+    }
+
+    .status-end-time {
+        font-size: 20px;
     }
 
     .status-value {
-        font-size: 20px;
+        font-size: 24px;
+    }
+
+    .preview {
+        font-size: 22px;
     }
 
     .booking-time {
@@ -566,13 +765,19 @@ select:focus {
 <div class="app">
 
 
-    <!-- HEADER -->
+    <!-- =================================================
+         HEADER
+         ================================================= -->
 
     <div class="header">
 
-        <div class="fire">🔥</div>
+        <div class="fire">
+            🔥
+        </div>
 
-        <h1>Boka bastun</h1>
+        <h1>
+            Boka bastun
+        </h1>
 
         <div class="subtitle">
             Glöm inte att göra fint efter Er
@@ -581,43 +786,63 @@ select:focus {
     </div>
 
 
-    <!-- STATUS -->
+    <!-- =================================================
+         STATUS
+         ================================================= -->
 
     <div class="status">
 
-        <div class="status-left">
+        <div class="status-content">
 
-            <div
-                id="statusDot"
-                class="status-dot">
+            <div class="status-left">
+
+                <div
+                    id="statusDot"
+                    class="status-dot">
+                </div>
+
+                <div>
+
+                    <div class="status-label">
+                        Status just nu
+                    </div>
+
+                    <div
+                        id="statusValue"
+                        class="status-value">
+                        Ledig
+                    </div>
+
+                </div>
+
             </div>
 
-            <div>
 
-                <div class="status-title">
-                    Status
+            <div
+                id="statusEnd"
+                class="status-end"
+                style="display:none;">
+
+                <div class="status-end-label">
+                    Till
                 </div>
 
                 <div
-                    id="statusValue"
-                    class="status-value">
-                    Ledig
+                    id="statusTime"
+                    class="status-end-time">
+                    23:55
                 </div>
 
             </div>
 
-        </div>
-
-
-        <div
-            id="statusTime"
-            class="status-time">
         </div>
 
     </div>
 
 
-    <!-- SNABBVAL -->
+    <!-- =================================================
+         SNABBVAL
+         ================================================= -->
 
     <div class="quick">
 
@@ -636,7 +861,9 @@ select:focus {
     </div>
 
 
-    <!-- BOKNING -->
+    <!-- =================================================
+         BOKNING
+         ================================================= -->
 
     <div class="card">
 
@@ -673,9 +900,7 @@ select:focus {
         </div>
 
 
-        <div
-            class="field"
-            style="margin-bottom:13px;">
+        <div class="field">
 
             <label for="duration">
                 Längd
@@ -704,15 +929,18 @@ select:focus {
         </div>
 
 
-        <div class="preview-title">
-            DIN BOKNING
-        </div>
+        <div class="preview-box">
 
+            <div class="preview-title">
+                Din bokning
+            </div>
 
-        <div
-            id="preview"
-            class="preview">
-            -
+            <div
+                id="preview"
+                class="preview">
+                -
+            </div>
+
         </div>
 
 
@@ -730,16 +958,26 @@ select:focus {
             class="message">
         </div>
 
-
     </div>
 
 
-    <!-- AKTUELLA BOKNINGAR -->
+    <!-- =================================================
+         AKTUELLA BOKNINGAR
+         ================================================= -->
 
     <div class="bookings-card">
 
-        <div class="section-title">
-            AKTUELLA BOKNINGAR
+        <div class="section-heading">
+
+            <div class="section-title">
+                Aktuella bokningar
+            </div>
+
+            <div
+                id="bookingCount"
+                class="booking-count">
+            </div>
+
         </div>
 
 
@@ -818,7 +1056,9 @@ const firebaseConfig = {
 
 
 const app =
-    initializeApp(firebaseConfig);
+    initializeApp(
+        firebaseConfig
+    );
 
 
 const auth =
@@ -841,43 +1081,79 @@ const bookingsRef =
    ===================================================== */
 
 const dateInput =
-    document.getElementById("date");
+    document.getElementById(
+        "date"
+    );
 
 const timeInput =
-    document.getElementById("time");
+    document.getElementById(
+        "time"
+    );
 
 const durationInput =
-    document.getElementById("duration");
+    document.getElementById(
+        "duration"
+    );
 
 const preview =
-    document.getElementById("preview");
+    document.getElementById(
+        "preview"
+    );
 
 const bookButton =
-    document.getElementById("bookButton");
+    document.getElementById(
+        "bookButton"
+    );
 
 const message =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
 
 const bookingsList =
-    document.getElementById("bookingsList");
+    document.getElementById(
+        "bookingsList"
+    );
+
+const bookingCount =
+    document.getElementById(
+        "bookingCount"
+    );
 
 const statusValue =
-    document.getElementById("statusValue");
+    document.getElementById(
+        "statusValue"
+    );
 
 const statusTime =
-    document.getElementById("statusTime");
+    document.getElementById(
+        "statusTime"
+    );
+
+const statusEnd =
+    document.getElementById(
+        "statusEnd"
+    );
 
 const statusDot =
-    document.getElementById("statusDot");
+    document.getElementById(
+        "statusDot"
+    );
 
 const nowButton =
-    document.getElementById("nowButton");
+    document.getElementById(
+        "nowButton"
+    );
 
 const todayButton =
-    document.getElementById("todayButton");
+    document.getElementById(
+        "todayButton"
+    );
 
 const tomorrowButton =
-    document.getElementById("tomorrowButton");
+    document.getElementById(
+        "tomorrowButton"
+    );
 
 
 /* =====================================================
@@ -907,9 +1183,13 @@ function localDateString(
     return (
         date.getFullYear() +
         "-" +
-        pad(date.getMonth() + 1) +
+        pad(
+            date.getMonth() + 1
+        ) +
         "-" +
-        pad(date.getDate())
+        pad(
+            date.getDate()
+        )
     );
 }
 
@@ -919,26 +1199,36 @@ function localTimeString(
 ) {
 
     return (
-        pad(date.getHours()) +
+        pad(
+            date.getHours()
+        ) +
         ":" +
-        pad(date.getMinutes())
+        pad(
+            date.getMinutes()
+        )
     );
 }
 
 
-function roundUp15Minutes(date) {
+function roundUp15Minutes(
+    date
+) {
 
     const d =
         new Date(date);
 
     d.setSeconds(0);
+
     d.setMilliseconds(0);
 
     const minutes =
         d.getMinutes();
 
     const rounded =
-        Math.ceil(minutes / 15) * 15;
+        Math.ceil(
+            minutes / 15
+        ) * 15;
+
 
     if (rounded >= 60) {
 
@@ -955,11 +1245,14 @@ function roundUp15Minutes(date) {
         );
     }
 
+
     return d;
 }
 
 
-function startDate(booking) {
+function startDate(
+    booking
+) {
 
     return new Date(
         booking.date +
@@ -970,11 +1263,17 @@ function startDate(booking) {
 }
 
 
-function endDate(booking) {
+function endDate(
+    booking
+) {
 
     return new Date(
-        startDate(booking).getTime() +
-        Number(booking.duration) *
+        startDate(booking)
+            .getTime() +
+
+        Number(
+            booking.duration
+        ) *
         60 *
         60 *
         1000
@@ -982,13 +1281,16 @@ function endDate(booking) {
 }
 
 
-function formatDate(dateString) {
+function formatDate(
+    dateString
+) {
 
     const d =
         new Date(
             dateString +
             "T12:00:00"
         );
+
 
     const months = [
         "JAN",
@@ -1005,10 +1307,13 @@ function formatDate(dateString) {
         "DEC"
     ];
 
+
     return (
         d.getDate() +
         " " +
-        months[d.getMonth()]
+        months[
+            d.getMonth()
+        ]
     );
 }
 
@@ -1024,7 +1329,8 @@ function updatePreview() {
         !timeInput.value
     ) {
 
-        preview.textContent = "-";
+        preview.textContent =
+            "-";
 
         return;
     }
@@ -1042,7 +1348,9 @@ function updatePreview() {
     const end =
         new Date(
             start.getTime() +
-            Number(durationInput.value) *
+            Number(
+                durationInput.value
+            ) *
             60 *
             60 *
             1000
@@ -1050,15 +1358,25 @@ function updatePreview() {
 
 
     preview.textContent =
-        formatDate(dateInput.value) +
+        formatDate(
+            dateInput.value
+        ) +
         " " +
-        pad(start.getHours()) +
+        pad(
+            start.getHours()
+        ) +
         ":" +
-        pad(start.getMinutes()) +
+        pad(
+            start.getMinutes()
+        ) +
         " → " +
-        pad(end.getHours()) +
+        pad(
+            end.getHours()
+        ) +
         ":" +
-        pad(end.getMinutes());
+        pad(
+            end.getMinutes()
+        );
 }
 
 
@@ -1066,7 +1384,9 @@ function updatePreview() {
    SNABBKNAPPAR
    ===================================================== */
 
-function setQuickButton(name) {
+function setQuickButton(
+    name
+) {
 
     nowButton.classList.toggle(
         "active",
@@ -1092,11 +1412,14 @@ function setNow() {
             new Date()
         );
 
+
     dateInput.value =
         localDateString(now);
 
+
     timeInput.value =
         localTimeString(now);
+
 
     setQuickButton("now");
 
@@ -1109,8 +1432,10 @@ function setToday() {
     const now =
         new Date();
 
+
     dateInput.value =
         localDateString(now);
+
 
     setQuickButton("today");
 
@@ -1120,17 +1445,24 @@ function setToday() {
 
 function setTomorrow() {
 
-    const d =
+    const tomorrow =
         new Date();
 
-    d.setDate(
-        d.getDate() + 1
+
+    tomorrow.setDate(
+        tomorrow.getDate() + 1
     );
 
-    dateInput.value =
-        localDateString(d);
 
-    setQuickButton("tomorrow");
+    dateInput.value =
+        localDateString(
+            tomorrow
+        );
+
+
+    setQuickButton(
+        "tomorrow"
+    );
 
     updatePreview();
 }
@@ -1145,7 +1477,8 @@ function showMessage(
     type = ""
 ) {
 
-    message.textContent = text;
+    message.textContent =
+        text;
 
     message.className =
         "message " + type;
@@ -1167,10 +1500,15 @@ function updateStatus() {
             booking => {
 
                 const start =
-                    startDate(booking);
+                    startDate(
+                        booking
+                    );
 
                 const end =
-                    endDate(booking);
+                    endDate(
+                        booking
+                    );
+
 
                 return (
                     now >= start &&
@@ -1183,29 +1521,48 @@ function updateStatus() {
     if (current) {
 
         const end =
-            endDate(current);
+            endDate(
+                current
+            );
+
 
         statusValue.textContent =
             "Bokad";
+
 
         statusDot.classList.add(
             "busy"
         );
 
+
+        statusEnd.style.display =
+            "block";
+
+
         statusTime.textContent =
-            "Till " +
-            pad(end.getHours()) +
+            pad(
+                end.getHours()
+            ) +
             ":" +
-            pad(end.getMinutes());
+            pad(
+                end.getMinutes()
+            );
+
 
     } else {
 
         statusValue.textContent =
             "Ledig";
 
+
         statusDot.classList.remove(
             "busy"
         );
+
+
+        statusEnd.style.display =
+            "none";
+
 
         statusTime.textContent =
             "";
@@ -1227,7 +1584,9 @@ function renderBookings() {
         bookings
             .filter(
                 booking =>
-                    endDate(booking) > now
+                    endDate(
+                        booking
+                    ) > now
             )
             .sort(
                 (a, b) =>
@@ -1236,7 +1595,20 @@ function renderBookings() {
             );
 
 
-    if (visible.length === 0) {
+    bookingCount.textContent =
+        visible.length === 0
+        ? ""
+        : visible.length +
+          (
+              visible.length === 1
+              ? " bokning"
+              : " bokningar"
+          );
+
+
+    if (
+        visible.length === 0
+    ) {
 
         bookingsList.innerHTML =
             '<div class="empty">' +
@@ -1248,66 +1620,87 @@ function renderBookings() {
 
 
     bookingsList.innerHTML =
-        visible.map(
-            booking => {
+        visible
+            .map(
+                booking => {
 
-                const start =
-                    startDate(booking);
+                    const start =
+                        startDate(
+                            booking
+                        );
 
-                const end =
-                    endDate(booking);
-
-                const active =
-                    now >= start &&
-                    now < end;
+                    const end =
+                        endDate(
+                            booking
+                        );
 
 
-                return `
+                    const active =
+                        now >= start &&
+                        now < end;
 
-                    <div class="booking">
 
-                        <div>
+                    return `
 
-                            <div class="booking-date">
-                                ${formatDate(booking.date)}
+                        <div class="booking">
+
+                            <div>
+
+                                <div class="booking-date">
+                                    ${formatDate(
+                                        booking.date
+                                    )}
+                                </div>
+
+                                <div class="booking-time">
+                                    ${pad(
+                                        start.getHours()
+                                    )}:${pad(
+                                        start.getMinutes()
+                                    )}
+                                    →
+                                    ${pad(
+                                        end.getHours()
+                                    )}:${pad(
+                                        end.getMinutes()
+                                    )}
+                                </div>
+
+                                <div class="booking-duration">
+                                    ${booking.duration}
+                                    ${
+                                        Number(
+                                            booking.duration
+                                        ) === 1
+                                        ? "timme"
+                                        : "timmar"
+                                    }
+                                </div>
+
                             </div>
 
-                            <div class="booking-time">
-                                ${pad(start.getHours())}:${pad(start.getMinutes())}
-                                →
-                                ${pad(end.getHours())}:${pad(end.getMinutes())}
-                            </div>
 
-                            <div class="booking-duration">
-                                ${booking.duration}
+                            <div class="booking-state">
+
                                 ${
-                                    Number(booking.duration) === 1
-                                    ? "timme"
-                                    : "timmar"
+                                    active
+                                    ? "PÅGÅR"
+                                    : "BOKAD"
                                 }
+
                             </div>
 
                         </div>
 
-                        <div class="booking-state">
-                            ${
-                                active
-                                ? "PÅGÅR"
-                                : "BOKAD"
-                            }
-                        </div>
-
-                    </div>
-
-                `;
-            }
-        )
-        .join("");
+                    `;
+                }
+            )
+            .join("");
 }
 
 
 /* =====================================================
-   RADERA UTGÅNGNA
+   RADERA UTGÅNGNA BOKNINGAR
    ===================================================== */
 
 async function removeExpiredBookings() {
@@ -1324,12 +1717,15 @@ async function removeExpiredBookings() {
     const expired =
         bookings.filter(
             booking =>
-                endDate(booking) <= now
+                endDate(
+                    booking
+                ) <= now
         );
 
 
     for (
-        const booking of expired
+        const booking
+        of expired
     ) {
 
         try {
@@ -1378,9 +1774,9 @@ function startRealtime() {
                 );
 
 
-            renderBookings();
-
             updateStatus();
+
+            renderBookings();
 
             removeExpiredBookings();
 
@@ -1392,6 +1788,7 @@ function startRealtime() {
                 "Firestore:",
                 error
             );
+
 
             showMessage(
                 "Kunde inte läsa bokningarna: " +
@@ -1472,21 +1869,27 @@ async function createBooking() {
     }
 
 
-    /* Kontrollera krock */
-
     const conflict =
         bookings.find(
             booking => {
 
                 const existingStart =
-                    startDate(booking);
+                    startDate(
+                        booking
+                    );
 
                 const existingEnd =
-                    endDate(booking);
+                    endDate(
+                        booking
+                    );
+
 
                 return (
-                    start < existingEnd &&
-                    end > existingStart
+                    start <
+                    existingEnd
+                    &&
+                    end >
+                    existingStart
                 );
             }
         );
@@ -1495,23 +1898,36 @@ async function createBooking() {
     if (conflict) {
 
         const s =
-            startDate(conflict);
+            startDate(
+                conflict
+            );
 
         const e =
-            endDate(conflict);
+            endDate(
+                conflict
+            );
 
 
         showMessage(
             "Tiden är redan bokad " +
-            pad(s.getHours()) +
+            pad(
+                s.getHours()
+            ) +
             ":" +
-            pad(s.getMinutes()) +
+            pad(
+                s.getMinutes()
+            ) +
             "–" +
-            pad(e.getHours()) +
+            pad(
+                e.getHours()
+            ) +
             ":" +
-            pad(e.getMinutes()),
+            pad(
+                e.getMinutes()
+            ),
             "error"
         );
+
 
         return;
     }
@@ -1519,6 +1935,7 @@ async function createBooking() {
 
     bookButton.disabled =
         true;
+
 
     bookButton.textContent =
         "Bokar...";
@@ -1546,7 +1963,9 @@ async function createBooking() {
                     Timestamp.now(),
 
                 expiresAt:
-                    Timestamp.fromDate(end)
+                    Timestamp.fromDate(
+                        end
+                    )
 
             }
         );
@@ -1640,10 +2059,12 @@ bookButton.addEventListener(
    ===================================================== */
 
 /*
- * 1 timme är standard.
+ * 1 timme är alltid standard.
  */
 
-durationInput.value = "1";
+durationInput.value =
+    "1";
+
 
 setNow();
 
@@ -1652,22 +2073,25 @@ setNow();
    FIREBASE AUTH
    ===================================================== */
 
-signInAnonymously(auth)
-    .catch(
-        error => {
+signInAnonymously(
+    auth
+)
+.catch(
+    error => {
 
-            console.error(
-                "Firebase auth:",
-                error
-            );
+        console.error(
+            "Firebase auth:",
+            error
+        );
 
-            showMessage(
-                "Kunde inte ansluta till Firebase: " +
-                error.message,
-                "error"
-            );
-        }
-    );
+
+        showMessage(
+            "Kunde inte ansluta till Firebase: " +
+            error.message,
+            "error"
+        );
+    }
+);
 
 
 onAuthStateChanged(
@@ -1676,6 +2100,7 @@ onAuthStateChanged(
 
         currentUser =
             user;
+
 
         if (user) {
 
@@ -1687,7 +2112,7 @@ onAuthStateChanged(
 
 
 /* =====================================================
-   KLOCKA / AUTOMATISK STATUS
+   AUTOMATISK STATUS
    ===================================================== */
 
 setInterval(
